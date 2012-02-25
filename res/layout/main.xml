@@ -8,18 +8,16 @@
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:inputType="numberDecimal"
-        
-         >
-		
+        android:inputType="numberDecimal" >
+
         <requestFocus />
     </EditText>
 
     <DigitalClock
         android:id="@+id/digitalClock1"
-        android:layout_width="wrap_content"
+        android:layout_width="94dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="DigitalClock"
@@ -29,7 +27,7 @@
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
         android:inputType="numberDecimal" />
   
