@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Planner implements Observer {
 
@@ -21,7 +22,10 @@ public class Planner implements Observer {
 		case HttpConnection.DID_SUCCEED:
 			try {
 				JSONArray js = new JSONArray((String)respobj[1]);
-				
+				for(int i = 0;i<js.length();i++) {
+					JSONObject jso = js.getJSONObject(i);
+					
+				}
 			} catch (JSONException e) {
 				//should never get here :)
 				e.printStackTrace();
