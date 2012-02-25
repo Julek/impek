@@ -3,6 +3,7 @@ package Impek.Gen;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.EditText;
 
 public class ImpekActivity extends Activity {
     /** Called when the activity is first created. */
@@ -16,6 +17,10 @@ public class ImpekActivity extends Activity {
         setContentView(R.layout.main);
         curr = this;
         locator = new GeoLocation();
-        System.out.println("Latitude: " + locator.getLattitude() + "\nLongitude: " + locator.getLattitude());
+        EditText s = ((EditText)findViewById(R.id.editText1));
+        s.setText(""+locator.getLattitude());
+        EditText v = ((EditText)findViewById(R.id.editText1));
+        s.setText(""+locator.getLongitude());
+        //System.out.println("Latitude: " + locator.getLattitude() + "\nLongitude: " + locator.getLongitude());
     }
 }

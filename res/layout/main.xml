@@ -5,29 +5,34 @@
     android:gravity="center_horizontal|clip_horizontal"
     android:orientation="horizontal" >
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:inputType="numberDecimal"
+        
+         >
+		
+        <requestFocus />
+    </EditText>
 
     <DigitalClock
         android:id="@+id/digitalClock1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0"
-        android:textSize="80px"
-        android:textColor="#0099CC"    
-        android:text="DigitalClock" />
+        android:text="DigitalClock"
+        android:textColor="#0099CC"
+        android:textSize="80px" />
 
- 
-</LinearLayout>
-   <TableLayout
+    <EditText
+        android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        >
-        <TableRow 
-            >
-            <TextView android:text="TESTING"/>
-            
-        </TableRow>
-    </TableLayout>
-    
+        android:layout_weight="1"
+        android:inputType="numberDecimal" />
+  
+</LinearLayout>
+  
 
