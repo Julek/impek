@@ -1,6 +1,5 @@
 package Impek.Gen;
 
-<<<<<<< HEAD
 import android.location.*;
 import android.os.Bundle;
 import android.content.*;
@@ -57,3 +56,4 @@ public class GeoLocation extends Observable {
 		}
 		
 	}
+}
