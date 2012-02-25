@@ -2,58 +2,128 @@ package Impek.Gen;
 
 import android.location.*;
 import android.os.Bundle;
+import android.util.Log;
 import android.content.*;
 import java.util.*;
 
-public class GeoLocation extends Observable {
+public class GeoLocation {
 
-	LocationManager locationManager;
-	Location location;
-	LocListener listener;
+	static LocationManager locationManager;
+	static Location location;
+	static LocListener listener;
 	
-	public GeoLocation()
+	public static void setup_GeoLocation()
 	{
-		LocationManager locationManager = (LocationManager) ImpekActivity.curr.getSystemService(Context.LOCATION_SERVICE);
-		listener = new LocListener();
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 5, listener);
+		location = null;
+		locationManager = (LocationManager) ImpekActivity.curr.getSystemService(Context.LOCATION_SERVICE);
+		listener = new GeoLocation.LocListener();
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, listener);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
 	}
 	
-	double getLattitude()
+	static double getLattitude() throws NoLocationError
 	{
-		return location.getLatitude();
+		Location ret = null;
+		
+		if(location != null)
+			ret = location;
+		
+		else
+		{
+			if(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) == null || locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER) == null)
+			{
+				if(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) == null && locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER) == null)
+					ret = null;
+				else if(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) == null)
+					ret = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				else
+					locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+			}
+			else if(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER).getTime() < locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getTime())
+				ret = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			else
+				ret = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		}
+		
+		if(ret == null)
+			throw new NoLocationError();
+		
+		return ret.getLatitude();
 	}
 	
-	double getLongitude()
+	static double getLongitude() throws NoLocationError
 	{
-		return location.getLongitude();
+		Location ret = null;
+		
+		if(location != null)
+			ret = location;
+		
+		else
+		{
+			if(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) == null || locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER) == null)
+			{
+				if(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) == null && locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER) == null)
+					ret = null;
+				else if(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) == null)
+					ret = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				else
+					locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+			}
+			else if(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER).getTime() < locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).getTime())
+				ret = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			else
+				ret = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		}
+		
+		if(ret == null)
+				throw new NoLocationError();
+		
+		return ret.getLongitude();
 	}
 	
-	double getAccuracy()
+	static double getAccuracy()
 	{
 		return location.getAccuracy();
 	}
 	
-	private class LocListener implements LocationListener
+	public static class LocListener implements LocationListener
 	{
 
 		public void onLocationChanged(Location loc) {
+			Log.e("Impek.Gen", "Location given.");
+			try {
+				double latitude = GeoLocation.getLattitude();
+				Log.e("Impek.Gen", "Latitude: " + latitude);
+			} catch (NoLocationError e) {
+				Log.e("Impek.Gen", "Unable to obtain GeoLocation");
+			}
+	        try {
+				double longitude = GeoLocation.getLongitude();
+				Log.e("Impek.Gen", "Longitude: " + longitude);
+			} catch (NoLocationError e) {
+				Log.e("Impek.Gen", "Unable to obtain GeoLocation");
+			}   
 			location = loc;
 		}
 
 		public void onProviderDisabled(String arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void onProviderEnabled(String arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
-			// TODO Auto-generated method stub
 			
 		}
 		
 	}
+	
+	static class NoLocationError extends Exception
+	{
+		private static final long serialVersionUID = 1L;
+		
+	}
+	
 }
