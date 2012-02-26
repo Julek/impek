@@ -13,14 +13,18 @@ public class SettingsNode {
 	private boolean scheduled;
 	private Date depDate;
 	
+	private String postcode;
+	
 	public SettingsNode(String locName, double lat, double lon,
-						Date date, boolean scheduled, Date depDate) {
+						Date date, boolean scheduled, Date depDate, 
+						String postcode) {
 		setLocationName(locName);
 		setLatitude(lat);
 		setLongitude(lon);
 		setDate(date);
 		setScheduled(scheduled);
 		setDepDate(depDate);
+		setPostcode(postcode);
 	}
 	
 	public static class SettingsNodeComparator implements Comparator<SettingsNode> {
@@ -65,13 +69,14 @@ public class SettingsNode {
 	
 	@Override
 	public String toString() {
-		return "{ \"name\":\"" + getLocationName() +
+		return "{\n\"name\":\"" + getLocationName() +
 				"\",\n\"latitude\":\"" + getLatitude() + 
 				"\",\n\"longitude\":\"" + getLongitude() + 
 				"\",\n\"arrival\":\"" + Settings.dateFormat.format(getDate()).toString() +
 				"\",\n\"scheduled\":\"" + String.valueOf(isScheduled()) +
 				"\",\n\"departure\":\"" + Settings.dateFormat.format(getDepDate()).toString() +
-				"\n }";
+				"\",\n\"postcode:\":\"" + getPostcode() +
+				"\"\n}";
 	}
 
 	public boolean isScheduled() {
@@ -88,5 +93,13 @@ public class SettingsNode {
 
 	public void setDepDate(Date depDate) {
 		this.depDate = depDate;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
 	}
 }

@@ -74,7 +74,8 @@ public class Settings implements Iterable<SettingsNode> {
 		Date date = dateFormat.parse(jsobj.getString("arrival"));
 		boolean scheduled = jsobj.getBoolean("scheduled");
 		Date depdate = dateFormat.parse(jsobj.getString("departure"));
-		return new SettingsNode(name, latitude,longitude,date,scheduled,depdate);
+		String postcode = jsobj.getString("postcode");
+		return new SettingsNode(name, latitude,longitude,date,scheduled,depdate,postcode);
 	}
 	
 	public boolean checkDateCondition(SettingsNode elem) {
@@ -83,8 +84,10 @@ public class Settings implements Iterable<SettingsNode> {
 	
 	public boolean pushSettingsNode(String name, double latitude, 
 									double longitude, Date date,
-									boolean scheduled, Date sepdate) {
-		SettingsNode set = new SettingsNode(name, latitude,longitude,date,scheduled,sepdate);
+									boolean scheduled, Date sepdate,
+									String postcode) {
+		SettingsNode set = new SettingsNode(name, latitude,longitude,date,
+											scheduled,sepdate,postcode);
 		if(!checkDateCondition(set)) 
 			return false;
 		queue.add(set);
