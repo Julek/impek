@@ -28,7 +28,7 @@ public class Planner extends Observable implements Observer {
 		appTimer.schedule(new PlannerTimerTask(), 100,1000);
 	}
 	
-	public Settings getSettignsInstance() {
+	public Settings getSettingsInstance() {
 		return set;
 	}
 	
