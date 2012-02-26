@@ -2,6 +2,7 @@ import urllib
 import urllib2
 import htmlParser
 import htmlParserDetail
+import json
 
 url = 'http://journeyplanner.tfl.gov.uk/user/XSLT_TRIP_REQUEST2'
 
@@ -33,4 +34,4 @@ data = f.read()
 myparser = htmlParserDetail.htmlParser()
 myparser.feed(data)
 
-print myparser.data
+print json.dumps(myparser.data)

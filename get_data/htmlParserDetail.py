@@ -13,6 +13,8 @@ class htmlParser(HTMLParser.HTMLParser):
         self.info = []
         self.info2 = ''
         self.time = []
+        self.hasnode = 0
+        self.node = ''
         self.hastime = 0
         self.timegap = 0
         
@@ -25,8 +27,9 @@ class htmlParser(HTMLParser.HTMLParser):
                     if len(self.time) > 0 and self.timegap == 0:
                         time = self.time.pop(0)
                     
-                    print time + ' > ' + str(self.info2)
-                    self.data2.append( {'time': time, 'details': self.info2} )
+                    #print time + ' > ' + str(self.info2)
+                    self.hasnode = 0
+                    self.data2.append( {'time': time, 'node': self.node, 'details': self.info2} )
                     
                     self.info2 = ''
                 if 'zoneinfo' in value:
@@ -53,7 +56,7 @@ class htmlParser(HTMLParser.HTMLParser):
     
     def handle_data(self, data):
         if 'Maximum journey time' in data:
-            print '---------------------------------------------------------------------------'
+            #print '---------------------------------------------------------------------------'
             self.data.append( {'option': self.data2} )
             self.data2 = []
     
@@ -79,6 +82,9 @@ class htmlParser(HTMLParser.HTMLParser):
                     self.time.append(data)
 
             else:
+                if self.hasnode == 0 and data != ' ':
+                    self.node = data
+                    self.hasnode = 1
                 self.info2 += data + ' ' 
             
         return
