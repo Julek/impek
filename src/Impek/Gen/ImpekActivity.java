@@ -21,12 +21,15 @@ public class ImpekActivity extends Activity {
 	/** Called when the activity is first created. */
 
 	static Context curr;
+	
+	private Planner p;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		curr = this;
 		GeoLocation.setup_GeoLocation();
+		p = new Planner(curr);
 		update();
 	}
 		
