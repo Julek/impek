@@ -34,5 +34,5 @@
             
             ></activity>
     </application>
-
+	<receiver  android:process=":remote" android:name="AlarmReceiver"></receiver>
 </manifest>

@@ -11,7 +11,6 @@ public class Impeksettings extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.settings);
 		curr = this;
-		//GeoLocation.setup_GeoLocation();
 	}
 	
 	
