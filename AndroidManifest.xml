@@ -29,6 +29,10 @@
             android:name=".Impekadd"
             
             ></activity>
+          <activity 
+            android:name=".AlarmHandler"
+            
+            ></activity>
     </application>
 
 </manifest>
