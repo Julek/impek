@@ -55,6 +55,11 @@ public class Planner extends Observable implements Observer {
 		wsc.addLocation("locator", src_post, "locator", dst_post);
 	}
 	
+	public void notificationOfPosition( double latitude, double longitude, 
+										String postcode ) {
+		
+	}
+	
 	public void addNewEntry(String locName, double latitude, double longitude,
 							Date arrival) {
 		if(!set.pushSettingsNode(locName, latitude, longitude, arrival, 

@@ -19,14 +19,17 @@ import android.widget.TextView;
 
 public class ImpekActivity extends Activity {
 	/** Called when the activity is first created. */
+	private Planner p;
 
-	static Context curr;
+	public static Context curr;
+
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		curr = this;
 		GeoLocation.setup_GeoLocation();
+		p = new Planner(curr);
 		update();
 	}
 		
@@ -34,56 +37,44 @@ public class ImpekActivity extends Activity {
 	
 	public void update() {
 		
-		
 		TextView r = ((TextView) findViewById(R.id.textView1));
 		TextView v = ((TextView) findViewById(R.id.textView2));
-
+		TextView s = ((TextView) findViewById(R.id.textView3));	
+		
 		try {
 			double latitude = GeoLocation.getLattitude();
 			double longitude = GeoLocation.getLongitude();
-			v.setText("Lat: " + latitude + "\nLon: " + longitude);
+			v.setText("Long.: " + longitude);
 			r.setText("Lat: " + latitude);
+			try {
+				try{
+					String postcode = GeoConversion.reverseGeocode(GeoLocation.getLocation());
+					s.setText(postcode);
+					p.notificationOfPosition(latitude, longitude, postcode);
+				}
+				catch(NoGeoConversion e)
+				{
+					s.setText("N/A");
+				}
+				
+			} catch (NoLocationError e) {
+				s.setText("N/A");
+			}
 		} catch (NoLocationError e) {
 			r.setText("N/A");
-		}
-		try {
-			double longitude = GeoLocation.getLongitude();
-			v.setText("Long.: " + longitude);
-		} catch (NoLocationError e) {
 			v.setText("N/A");
 		}
-		
-		TextView s = ((TextView) findViewById(R.id.textView3));
-		//EditText v = ((EditText) findViewById(R.id.editText2));
-		//@testing and experimenting ui:
-		//reverseTest("Reverse Lookup");
-	
 		
 		Button j = ((Button)findViewById(R.id.button1));
 	
 		j.setOnClickListener(new View.OnClickListener(){
 
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent f = new Intent(v.getContext(), Impeksettings.class);
 				startActivity(f);
 			}
 			
 		});
-		
-		
-		try {
-			try{
-				s.setText(GeoConversion.reverseGeocode(GeoLocation.getLocation()));
-			}
-			catch(NoGeoConversion e)
-			{
-				s.setText("N/A");
-			}
-			
-		} catch (NoLocationError e) {
-			s.setText("N/A");
-		} 
 	
 	}
 	
@@ -115,39 +106,10 @@ public class ImpekActivity extends Activity {
 	    return true;
 	}
 	
-
-	
-	
-	
-	
-	
-	
 	
 	public void reverseTest(String r){
 		TextView rs = ((TextView) findViewById(R.id.textView3));
 		rs.setText(r);
 	}
 		
-//	public void update() {
-//		TextView s = ((TextView) findViewById(R.id.textView1));
-//		//TextView v = ((TextView) findViewById(R.id.textView2));
-//
-//		/*try {
-//			double latitude = GeoLocation.getLattitude();
-//			double longitude = GeoLocation.getLongitude();
-//			v.setText("Lat: " + latitude + "\nLon: " + longitude);
-//			s.setText("Lat: " + latitude);
-//		} catch (NoLocationError e) {
-//			s.setText("N/A");
-//		}
-//		try {
-//			double longitude = GeoLocation.getLongitude();
-//			v.setText("Long.: " + longitude);
-//		} catch (NoLocationError e) {
-//			v.setText("N/A");
-//		}*/
-//
-
-//		
-//	}
 }

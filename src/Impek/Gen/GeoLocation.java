@@ -1,5 +1,6 @@
 package Impek.Gen;
 
+import Impek.Gen.ImpekActivity;
 import android.location.*;
 import android.os.Bundle;
 import android.content.*;
@@ -15,8 +16,14 @@ public class GeoLocation {
 		location = null;
 		locationManager = (LocationManager) ImpekActivity.curr.getSystemService(Context.LOCATION_SERVICE);
 		listener = new GeoLocation.LocListener();
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, listener);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 30, listener);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 30, listener);
+	}
+	
+	public static void single_update()
+	{
+		locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, listener, null);
+		//locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, listener, null);
 	}
 	
 	static double getLattitude() throws NoLocationError
