@@ -14,8 +14,7 @@ public class ImpekActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        curr = this;
-        locator = new GeoLocation();
-        System.out.println("Latitude: " + locator.getLattitude() + "\nLongitude: " + locator.getLattitude());
+        Planner p = new Planner();
+        p.addLocation("w44dj", "sw72az");
     }
 }

@@ -2,15 +2,25 @@ package Impek.Gen;
 
 import java.util.ArrayList;
 
-import android.text.format.Time;
-
-public class Route implements Comparable{
+public class Route implements Comparable<Route>{
 	// fields
 	ArrayList<Node> nodes = new ArrayList<Node>(); //list of pitstops
-	Time Duration; // Total duration
+	private Time duration; // Total duration
+
+	public void addNodeToRoute(Node n) {
+		nodes.add(n);
+	}
 	
-	public int compareTo(Object arg0) {
-		return Time.compare(((Route)arg0).Duration, this.Duration);
+	public Time getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Time duration) {
+		this.duration = duration;
+	}
+
+	public int compareTo(Route arg0) {
+		return ((Route)arg0).getDuration().compareTo(getDuration());
 	}
 
 	
