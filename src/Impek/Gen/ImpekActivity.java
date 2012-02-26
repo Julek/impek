@@ -6,34 +6,61 @@ import android.content.Context;
 import android.content.pm.LabeledIntent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import android.util.Log;
 
 public class ImpekActivity extends Activity {
 	/** Called when the activity is first created. */
 
+	String [] serv = {
+			"eat pizza @dio"
+			,"make love @home"
+			,"listen to the music @yh ok"
+			,"get markee @airport"
+	};
 	static Context curr;
 
+	public void testHoussem1(){
+		
+		for(int i = 0 ; i < serv.length;i++){
+		
+		TextView r = new TextView(this);
+		
+		r.setText(serv[i]);
+			
+		}
+		
+	}
+	
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		curr = this;
 		GeoLocation.setup_GeoLocation();
-		update();}
+		update();
+		reverseTest("Lookup temp.");
+	}
+	
+	public void reverseTest(String r){
+		TextView rs = ((TextView) findViewById(R.id.textView3));
+		rs.setText(r);
+	}
 		
 	public void update() {
-		EditText s = ((EditText) findViewById(R.id.editText1));
-		EditText v = ((EditText) findViewById(R.id.editText2));
+		TextView s = ((TextView) findViewById(R.id.textView1));
+		TextView v = ((TextView) findViewById(R.id.textView2));
 
 		try {
 			double latitude = GeoLocation.getLattitude();
-			s.setText("" + latitude);
+			s.setText("Lat: " + latitude);
 		} catch (NoLocationError e) {
 			s.setText("N/A");
 		}
 		try {
 			double longitude = GeoLocation.getLongitude();
-			v.setText("" + longitude);
+			v.setText("Long.: " + longitude);
 		} catch (NoLocationError e) {
 			v.setText("N/A");
 		}
