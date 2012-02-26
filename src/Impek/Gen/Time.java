@@ -8,6 +8,11 @@ public class Time implements Comparable<Time> {
 		parse(s);
 	}
 	
+	public Time() {
+		setHours(0);
+		setMinutes(0);
+	}
+	
 	public Time(int h, int m) {
 		setHours(h);
 		setMinutes(m);
@@ -28,6 +33,15 @@ public class Time implements Comparable<Time> {
 		result.setHours(result.getHours() - getHours());
 		result.setMinutes((result.getMinutes() + 60 - getMinutes()) % 60);
 		return result;
+	}
+	
+	public Time addition(Time second) {
+		int minutes = getMinutes() + second.getMinutes();
+		int hours = getHours() + second.getHours();
+		if(minutes>=60)
+			hours++;
+		minutes %= 60;
+		return new Time(hours,minutes);
 	}
 
 	public int getMinutes() {

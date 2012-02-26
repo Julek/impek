@@ -18,9 +18,10 @@ public final class R {
         public static final int datePicker1=0x7f060000;
         public static final int digitalClock1=0x7f060005;
         public static final int editText1=0x7f060002;
-        public static final int item1=0x7f06000c;
-        public static final int item2=0x7f06000d;
+        public static final int item1=0x7f06000d;
+        public static final int item2=0x7f06000e;
         public static final int linearLayout1=0x7f06000a;
+        public static final int listView1=0x7f06000c;
         public static final int scrollView1=0x7f060009;
         public static final int textView1=0x7f060003;
         public static final int textView2=0x7f060006;
