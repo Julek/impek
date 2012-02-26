@@ -36,6 +36,7 @@ public class Planner extends Observable implements Observer {
 				SettingsNode sn = it.next();
 				//if 30 m range and after departure
 				// it.remove
+				// notify ui of arrival!
 				//if not in 30 m range and after departure
 				// recalculate route
 				//if date>arrival

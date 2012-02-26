@@ -1,7 +1,5 @@
 package Impek.Gen;
 
-import android.text.format.Time;
-
 public class JourneyNode {
 	
 	enum Mode{
