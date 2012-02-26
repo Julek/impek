@@ -10,11 +10,17 @@ public class SettingsNode {
 	private double lon;
 	private Date date;
 	
-	public SettingsNode(String locName, double lat, double lon, Date date) {
+	private boolean scheduled;
+	private Date depDate;
+	
+	public SettingsNode(String locName, double lat, double lon,
+						Date date, boolean scheduled, Date depDate) {
 		setLocationName(locName);
 		setLatitude(lat);
 		setLongitude(lon);
 		setDate(date);
+		setScheduled(scheduled);
+		setDepDate(depDate);
 	}
 	
 	public static class SettingsNodeComparator implements Comparator<SettingsNode> {
@@ -63,6 +69,24 @@ public class SettingsNode {
 				"\",\n\"latitude\":\"" + getLatitude() + 
 				"\",\n\"longitude\":\"" + getLongitude() + 
 				"\",\n\"arrival\":\"" + Settings.dateFormat.format(getDate()).toString() +
-				"\"\n }";
+				"\",\n\"scheduled\":\"" + String.valueOf(isScheduled()) +
+				"\",\n\"departure\":\"" + Settings.dateFormat.format(getDepDate()).toString() +
+				"\n }";
+	}
+
+	public boolean isScheduled() {
+		return scheduled;
+	}
+
+	public void setScheduled(boolean scheduled) {
+		this.scheduled = scheduled;
+	}
+
+	public Date getDepDate() {
+		return depDate;
+	}
+
+	public void setDepDate(Date depDate) {
+		this.depDate = depDate;
 	}
 }

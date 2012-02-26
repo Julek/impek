@@ -9,6 +9,7 @@ public class JourneyNode {
 	
 	private String origin; 
 	private String arrival;
+	
 	public String getOrigin() {
 		return origin;
 	}
@@ -27,6 +28,4 @@ public class JourneyNode {
 	public void setPartialTime(Time partialTime) {
 		this.partialTime = partialTime;
 	}
-	
-	
 }

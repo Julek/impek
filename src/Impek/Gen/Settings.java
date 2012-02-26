@@ -25,6 +25,7 @@ public class Settings implements Iterable<SettingsNode> {
 	 * 		"latitude":"SomeLatitude", 
 	 * 		"longitude":"SomeLongitude",
 	 * 		"arrival":"SomeArrivalDateTime" 
+	 * 		.....
 	 * 	},
 	 *  .. 
 	 * ]
@@ -65,20 +66,25 @@ public class Settings implements Iterable<SettingsNode> {
 		}
 	}
 	
-	private SettingsNode createSettingsNode(JSONObject jsobj) throws JSONException, ParseException {
+	private SettingsNode createSettingsNode(JSONObject jsobj) 
+									throws JSONException, ParseException {
 		String name = jsobj.getString("name");
 		double latitude = jsobj.getDouble("latitude");
 		double longitude = jsobj.getDouble("longitude");
 		Date date = dateFormat.parse(jsobj.getString("arrival"));
-		return new SettingsNode(name, latitude,longitude,date);
+		boolean scheduled = jsobj.getBoolean("scheduled");
+		Date depdate = dateFormat.parse(jsobj.getString("departure"));
+		return new SettingsNode(name, latitude,longitude,date,scheduled,depdate);
 	}
 	
 	public boolean checkDateCondition(SettingsNode elem) {
 		return new Date().after(elem.getDate());
 	}
 	
-	public boolean pushSettingsNode(String name, double latitude, double longitude, Date date) {
-		SettingsNode set = new SettingsNode(name, latitude,longitude,date);
+	public boolean pushSettingsNode(String name, double latitude, 
+									double longitude, Date date,
+									boolean scheduled, Date sepdate) {
+		SettingsNode set = new SettingsNode(name, latitude,longitude,date,scheduled,sepdate);
 		if(!checkDateCondition(set)) 
 			return false;
 		queue.add(set);
