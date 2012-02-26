@@ -74,18 +74,33 @@ public class Planner extends Observable implements Observer {
 			try {
 				if(respobj[1]!=null) {
 					JSONArray js = (JSONArray)respobj[1];
-					Route[] rs = new Route[js.length()/5];
-					for(int i = 0;i<js.length();i+=5) {
-						JSONObject jso = js.getJSONObject(i+3);//duration - i+3;
-						Time totalDur = new Time((String)jso.get("val"));
-						rs[i/5] = new Route();
-						rs[i/5].setDuration(totalDur);
-						
-						JSONArray jsarrpath = jso.getJSONArray("path");
+					Route[] rs = new Route[js.length()];
+					for(int i = 0;i<js.length();i++) {		
+						rs[i] = new Route();
+						JSONArray jsarrpath = js.getJSONObject(i).getJSONArray("option");
 						for(int j = 0;j<jsarrpath.length();j++) {
-							
+							JourneyNode n = new JourneyNode();
+							JSONObject jsobj = jsarrpath.getJSONObject(j);
+							n.setOrigin(jsobj.getString("node"));
+							String timeint = jsobj.getString("time");
+							String[] v = timeint.split(" - ");
+							Time t1 = new Time(v[0]);
+							Time t2 = new Time(v[1]);
+							n.setPartialTime(t1.substract(t2));
+							String type = jsobj.getString("type");
+							if(type == "walk") {
+								n.setMode(JourneyNode.Mode.Walk);
+							}
+							if(type == "bus") {
+								n.setMode(JourneyNode.Mode.Bus);
+							}
+							if(type == "tube") {
+								n.setMode(JourneyNode.Mode.Tube);
+							}
+							rs[i].addNodeToRoute(n);
 						}
 					}
+					//use array of routes somehow...
 				}
 			} catch (JSONException e) {
 				//should never get here :)
