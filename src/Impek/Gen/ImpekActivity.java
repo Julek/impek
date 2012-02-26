@@ -35,6 +35,7 @@ public class ImpekActivity extends Activity {
 	public void update() {
 		
 		
+		
 		TextView r = ((TextView) findViewById(R.id.textView1));
 		TextView v = ((TextView) findViewById(R.id.textView2));
 
