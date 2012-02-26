@@ -20,11 +20,11 @@ public class GeoLocation {
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 30, listener);
 	}
 	
-	public static void single_update()
+	/*public static void single_update()
 	{
 		locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, listener, null);
 		//locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, listener, null);
-	}
+	}*/
 	
 	static double getLattitude() throws NoLocationError
 	{
