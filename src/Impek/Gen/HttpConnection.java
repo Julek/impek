@@ -26,7 +26,6 @@ public class HttpConnection implements Runnable {
 	private static final int POST = 1;
 	private static final int PUT = 2;
 	private static final int DELETE = 3;
-	private static final int BITMAP = 4;
 
 	private String url;
 	private int method;
@@ -66,10 +65,6 @@ public class HttpConnection implements Runnable {
 		create(DELETE, url, null);
 	}
 
-	public void bitmap(String url) {
-		create(BITMAP, url, null);
-	}
-
 	public void run() {
 		handler.sendMessage(Message.obtain(handler, HttpConnection.DID_START));
 		httpClient = new DefaultHttpClient();
@@ -94,8 +89,7 @@ public class HttpConnection implements Runnable {
 				response = httpClient.execute(new HttpDelete(url));
 				break;
 			}
-			if (method < BITMAP)
-				processEntity(response.getEntity());
+			processEntity(response.getEntity());
 		} catch (Exception e) {
 			handler.sendMessage(Message.obtain(handler,
 					HttpConnection.DID_ERROR, e));

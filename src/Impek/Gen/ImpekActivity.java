@@ -66,5 +66,4 @@ public class ImpekActivity extends Activity {
 		}
 
 	}
-
 }
