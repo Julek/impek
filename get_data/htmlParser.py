@@ -1,4 +1,6 @@
 import HTMLParser
+from datetime import datetime
+import random
 
 class htmlParser(HTMLParser.HTMLParser):
     def __init__(self):
@@ -6,6 +8,7 @@ class htmlParser(HTMLParser.HTMLParser):
         self.recording = 0
         self.field = ''
         self.data = []
+        self.randomWalk = random.randint(1, 10)
         
     def handle_starttag(self, tag, attrs):
         if self.recording and tag == 'td':
@@ -30,9 +33,18 @@ class htmlParser(HTMLParser.HTMLParser):
         return
     
     def handle_data(self, data):
-        if self.recording == 1 and self.field != '':
+        if self.recording == 1 and self.field != '' and data != " " and data != 'View':
             #print self.field + " > " + data
             self.data.append( {'field': self.field, 'val': data} )
+            
+            if self.field == "duration":
+                remTime = data
+                try:              
+                    rem = datetime.strptime(data, "%H:%M") - datetime.strptime( str(self.randomWalk), "%M")
+                    remTime = rem.seconds / 60
+                except:
+                    pass
                 
+                self.data.append( {'path': [{'field': "walk", 'val': self.randomWalk}, {'field': "tube", 'val': remTime}] } )
         self.recording2 = ''
         return

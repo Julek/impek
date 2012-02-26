@@ -2,11 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:gravity="center_horizontal|clip_horizontal"
+    android:orientation="horizontal" >
 
-    <TextView
-        android:layout_width="fill_parent"
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:inputType="numberDecimal" >
+
+        <requestFocus />
+    </EditText>
+
+    <DigitalClock
+        android:id="@+id/digitalClock1"
+        android:layout_width="94dp"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:layout_gravity="center_horizontal"
+        android:text="DigitalClock"
+        android:textColor="#0099CC"
+        android:textSize="80px" />
 
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:inputType="numberDecimal" />
+  
 </LinearLayout>
+  
+
