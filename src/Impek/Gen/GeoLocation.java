@@ -90,19 +90,7 @@ public class GeoLocation {
 	{
 
 		public void onLocationChanged(Location loc) {
-			Log.e("Impek.Gen", "Location given.");
-			try {
-				double latitude = GeoLocation.getLattitude();
-				Log.e("Impek.Gen", "Latitude: " + latitude);
-			} catch (NoLocationError e) {
-				Log.e("Impek.Gen", "Unable to obtain GeoLocation");
-			}
-	        try {
-				double longitude = GeoLocation.getLongitude();
-				Log.e("Impek.Gen", "Longitude: " + longitude);
-			} catch (NoLocationError e) {
-				Log.e("Impek.Gen", "Unable to obtain GeoLocation");
-			}   
+			((ImpekActivity) ImpekActivity.curr).update(); 
 			location = loc;
 		}
 

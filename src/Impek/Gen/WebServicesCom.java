@@ -7,6 +7,7 @@ import org.json.JSONException;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 public class WebServicesCom extends Observable {
 
@@ -28,17 +29,19 @@ public class WebServicesCom extends Observable {
 					respobj[0] = HttpConnection.DID_SUCCEED;
 				} catch (JSONException e1) {
 					respobj[0] = HttpConnection.DID_ERROR;
-					e1.printStackTrace();
+					Log.e(WebServicesCom.class.getName(), e1.getMessage());
 				}
 				respobj[1] = js;
-				notifyObservers((Object) respobj);
+				WebServicesCom.this.setChanged();
+				WebServicesCom.this.notifyObservers((Object) respobj);
 				break;
 			case HttpConnection.DID_ERROR:
 				respobj[0] = HttpConnection.DID_ERROR;
 				respobj[1] = null;
 				Exception e = (Exception) message.obj;
-				e.printStackTrace();
-				notifyObservers((Object) respobj);
+				Log.e(WebServicesCom.class.getName(), e.getMessage());
+				WebServicesCom.this.setChanged();
+				WebServicesCom.this.notifyObservers((Object) respobj);
 				break;
 			default:
 				break;
