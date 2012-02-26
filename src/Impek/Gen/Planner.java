@@ -28,6 +28,10 @@ public class Planner extends Observable implements Observer {
 		appTimer.schedule(new PlannerTimerTask(), 100,1000);
 	}
 	
+	public Settings getSettingsInstance() {
+		return set;
+	}
+	
 	private class PlannerTimerTask extends TimerTask {
 		@Override
 		public void run() {
@@ -49,6 +53,11 @@ public class Planner extends Observable implements Observer {
 	public void addLocation(String src_post, 
 							String dst_post) {
 		wsc.addLocation("locator", src_post, "locator", dst_post);
+	}
+	
+	public void notificationOfPosition( double latitude, double longitude, 
+										String postcode ) {
+		
 	}
 	
 	public void addNewEntry(String locName, double latitude, double longitude,
@@ -86,6 +95,7 @@ public class Planner extends Observable implements Observer {
 							String[] v = timeint.split(" - ");
 							Time t1 = new Time(v[0]);
 							Time t2 = new Time(v[1]);
+							n.setArrivalTime(t2);
 							n.setPartialTime(t1.substract(t2));
 							String type = jsobj.getString("type");
 							if(type == "walk") {
@@ -100,7 +110,7 @@ public class Planner extends Observable implements Observer {
 							rs[i].addNodeToRoute(n);
 						}
 					}
-					//use array of routes somehow...
+					//do route thing...
 				}
 			} catch (JSONException e) {
 				//should never get here :)

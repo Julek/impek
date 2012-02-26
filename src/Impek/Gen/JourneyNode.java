@@ -9,6 +9,7 @@ public class JourneyNode {
 	private Mode mode;
 	
 	private Time partialTime;
+	private Time arrivalTime;
 	
 	private String origin; 
 	
@@ -29,5 +30,11 @@ public class JourneyNode {
 	}
 	public void setMode(Mode mode) {
 		this.mode = mode;
+	}
+	public Time getArrivalTime() {
+		return arrivalTime;
+	}
+	public void setArrivalTime(Time arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
 }

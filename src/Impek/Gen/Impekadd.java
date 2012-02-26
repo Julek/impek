@@ -20,11 +20,12 @@ public class Impekadd extends Activity{
 	}
 	
 	
-	public void setAlarm (Date d,int label,String desc){
+	public void setAlarm (Date d,int uid,String desc){
 
 		AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);	
-		//PendingIntent pendingintent = PendingIntent.getBroadcast(Activity.this, 0, intent, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-		//am.set(AlarmManager.RTC_WAKEUP, d.getTime(), pendingintent);
+	//	PendingIntent pendingintent = PendingIntent.getBroadcast(Activity.this, 0, intent, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+	//	am.set(AlarmManager.RTC_WAKEUP, d.getTime(), pendingintent);
+		
 		// getting there .. 
 	}
 	
