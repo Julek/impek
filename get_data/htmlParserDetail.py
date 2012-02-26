@@ -17,6 +17,7 @@ class htmlParser(HTMLParser.HTMLParser):
         self.node = ''
         self.hastime = 0
         self.timegap = 0
+        self.type = ''
         
     def handle_starttag(self, tag, attrs):
         if self.recording:
@@ -29,12 +30,19 @@ class htmlParser(HTMLParser.HTMLParser):
                     
                     #print time + ' > ' + str(self.info2)
                     self.hasnode = 0
-                    self.data2.append( {'time': time, 'node': self.node, 'details': self.info2} )
+                    self.data2.append( {'time': time, 'type': self.type, 'node': self.node, 'details': self.info2} )
                     
                     self.info2 = ''
                 if 'zoneinfo' in value:
                     self.recording = 0
                 #print '*' + value + ' > ' + name
+                
+                if 'assets/images/icon-buses.gif' in value:
+                    self.type = 'bus'
+                if 'assets/images/icon-walk.gif' in value:
+                    self.type = 'walk'
+                if 'assets/images/icon-tube.gif' in value:
+                    self.type = 'tube'
                 
                 if 'assets/images/icon-buses.gif' in value or 'assets/images/icon-walk.gif' in value or 'assets/images/icon-tube.gif' in value:
                     if self.hastime == 1:
