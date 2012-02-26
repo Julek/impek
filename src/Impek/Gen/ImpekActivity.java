@@ -1,13 +1,11 @@
 package Impek.Gen;
 
-import Impek.Gen.GeoLocation.*;
+import Impek.Gen.GeoConversion.NoGeoConversion;
+import Impek.Gen.GeoLocation.NoLocationError;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.LabeledIntent;
 import android.os.Bundle;
 import android.widget.EditText;
-
-import android.util.Log;
 
 public class ImpekActivity extends Activity {
 	/** Called when the activity is first created. */
@@ -19,25 +17,34 @@ public class ImpekActivity extends Activity {
 		setContentView(R.layout.main);
 		curr = this;
 		GeoLocation.setup_GeoLocation();
-		update();}
+		update();
+	}
 		
 	public void update() {
 		EditText s = ((EditText) findViewById(R.id.editText1));
-		EditText v = ((EditText) findViewById(R.id.editText2));
+		//EditText v = ((EditText) findViewById(R.id.editText2));
 
-		try {
+		/*try {
 			double latitude = GeoLocation.getLattitude();
-			s.setText("" + latitude);
-		} catch (NoLocationError e) {
-			s.setText("N/A");
-		}
-		try {
 			double longitude = GeoLocation.getLongitude();
-			v.setText("" + longitude);
+			v.setText("Lat: " + latitude + "\nLon: " + longitude);
 		} catch (NoLocationError e) {
 			v.setText("N/A");
-		}
+		}*/
 
+		try {
+			try{
+				s.setText(GeoConversion.reverseGeocode(GeoLocation.getLocation()));
+			}
+			catch(NoGeoConversion e)
+			{
+				s.setText("N/A");
+			}
+			
+		} catch (NoLocationError e) {
+			s.setText("N/A");
+		} 
+		
 	}
 
 }

@@ -2,9 +2,7 @@ package Impek.Gen;
 
 import android.location.*;
 import android.os.Bundle;
-import android.util.Log;
 import android.content.*;
-import java.util.*;
 
 public class GeoLocation {
 
@@ -81,9 +79,18 @@ public class GeoLocation {
 		return ret.getLongitude();
 	}
 	
-	static double getAccuracy()
+	static double getAccuracy() throws NoLocationError
 	{
+		if(location == null)
+			throw new NoLocationError();
 		return location.getAccuracy();
+	}
+	
+	static Location getLocation() throws NoLocationError
+	{
+		if(location == null)
+			throw new NoLocationError();
+		return location;
 	}
 	
 	public static class LocListener implements LocationListener
