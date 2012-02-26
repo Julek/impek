@@ -19,14 +19,17 @@ import android.widget.TextView;
 
 public class ImpekActivity extends Activity {
 	/** Called when the activity is first created. */
+	private Planner p;
 
 	public static Context curr;
+
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		curr = this;
 		GeoLocation.setup_GeoLocation();
+		p = new Planner(curr);
 		update();
 	}
 		
