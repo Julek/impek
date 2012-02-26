@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Route implements Comparable<Route>{
 	// fields
-	ArrayList<Node> nodes = new ArrayList<Node>(); //list of pitstops
+	ArrayList<JourneyNode> nodes = new ArrayList<JourneyNode>(); //list of pitstops
 	private Time duration; // Total duration
 
-	public void addNodeToRoute(Node n) {
+	public void addNodeToRoute(JourneyNode n) {
 		nodes.add(n);
 	}
 	

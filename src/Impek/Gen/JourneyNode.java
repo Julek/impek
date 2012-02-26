@@ -1,6 +1,6 @@
 package Impek.Gen;
 
-public class Node {
+public class JourneyNode {
 	
 	enum Mode{
 		Bus,Tube,Walk
