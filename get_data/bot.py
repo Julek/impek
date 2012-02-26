@@ -1,6 +1,7 @@
 import urllib
 import urllib2
 import htmlParser
+import htmlParserDetail
 
 url = 'http://journeyplanner.tfl.gov.uk/user/XSLT_TRIP_REQUEST2'
 
@@ -26,7 +27,10 @@ req = urllib2.Request(url, data)
 response = urllib2.urlopen(req)
 the_page = response.read()
 
-myparser = htmlParser.htmlParser()
-myparser.feed(the_page)
+f = open('response.html', 'r')
+data = f.read()
+
+myparser = htmlParserDetail.htmlParser()
+myparser.feed(data)
 
 print myparser.data
