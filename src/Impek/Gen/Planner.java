@@ -151,7 +151,6 @@ public class Planner extends Observable implements Observer {
 										notifyObservers((Object)rs[j]);
 									}
 								
-								
 							}
 					}
 				}

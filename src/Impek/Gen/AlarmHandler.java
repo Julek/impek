@@ -46,8 +46,11 @@ public class AlarmHandler extends Activity implements Observer{
 		}
 	}
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
+		Route r = (Route)arg1;
+		for(int i = 0;i<r.noNodes();i++) {
+			JourneyNode jn = r.getNode(i);
+			
+		}
 	}
 	
 	
