@@ -19,10 +19,10 @@ import android.widget.TextView;
 
 public class ImpekActivity extends Activity {
 	/** Called when the activity is first created. */
-
-	static Context curr;
-	
 	private Planner p;
+
+	public static Context curr;
+
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -118,39 +118,10 @@ public class ImpekActivity extends Activity {
 	    return true;
 	}
 	
-
-	
-	
-	
-	
-	
-	
 	
 	public void reverseTest(String r){
 		TextView rs = ((TextView) findViewById(R.id.textView3));
 		rs.setText(r);
 	}
 		
-//	public void update() {
-//		TextView s = ((TextView) findViewById(R.id.textView1));
-//		//TextView v = ((TextView) findViewById(R.id.textView2));
-//
-//		/*try {
-//			double latitude = GeoLocation.getLattitude();
-//			double longitude = GeoLocation.getLongitude();
-//			v.setText("Lat: " + latitude + "\nLon: " + longitude);
-//			s.setText("Lat: " + latitude);
-//		} catch (NoLocationError e) {
-//			s.setText("N/A");
-//		}
-//		try {
-//			double longitude = GeoLocation.getLongitude();
-//			v.setText("Long.: " + longitude);
-//		} catch (NoLocationError e) {
-//			v.setText("N/A");
-//		}*/
-//
-
-//		
-//	}
 }
