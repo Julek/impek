@@ -104,7 +104,7 @@ public class GeoConversion {
 			if(full_post)
 				ret = post_top + " " + post_bottom;
 			else
-				ret = post_bottom;
+				ret = post_bottom + " 1AZ";
 		}
 		else
 			throw new NoGeoConversion();
