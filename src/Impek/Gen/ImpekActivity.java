@@ -23,7 +23,9 @@ public class ImpekActivity extends Activity {
 
 	public static Context curr;
 
-
+	//TextView drop_list = ((TextView) findViewById(R.id.listView1));
+	
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
@@ -77,9 +79,6 @@ public class ImpekActivity extends Activity {
 		});
 	
 	}
-	
-	
-	
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
