@@ -33,10 +33,15 @@ public final class R {
         public static final int nextweekonclick=0x7f020013;
         public static final int nextweekonfocus=0x7f020014;
         public static final int searchcal=0x7f020015;
+        public static final int upcoming=0x7f020016;
+        public static final int upcomingbanner=0x7f020017;
+        public static final int upcomingonclick=0x7f020018;
+        public static final int upcomingonfocus=0x7f020019;
     }
     public static final class id {
         public static final int Dateindicators=0x7f07000f;
         public static final int Dayoftheweek=0x7f070010;
+        public static final int ProgressBar=0x7f070018;
         public static final int all_stuff=0x7f070016;
         public static final int button1=0x7f070003;
         public static final int button2=0x7f070004;
@@ -60,11 +65,10 @@ public final class R {
         public static final int linearLayout1=0x7f070002;
         public static final int nextmonth=0x7f070014;
         public static final int nextweek=0x7f070013;
-        public static final int scrollView1=0x7f070019;
         public static final int slidingDrawer1=0x7f070009;
         public static final int spinner1=0x7f070001;
         public static final int textView1=0x7f070000;
-        public static final int textView3=0x7f070018;
+        public static final int textView3=0x7f070019;
         public static final int topbanner=0x7f07000c;
     }
     public static final class layout {

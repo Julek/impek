@@ -14,17 +14,34 @@
         android:textColor="#0099CC"
         android:textSize="80px" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <ProgressBar
+        android:id="@+id/ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </ScrollView>
-   
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fetching location .."
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+       <SlidingDrawer android:id="@+id/slidingDrawer1"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:topOffset="50dip" android:handle="@+id/handle"
+                android:content="@+id/content">
+                <ImageButton 
+                        android:layout_width="fill_parent" 
+                        android:background="@drawable/upcomingbanner"
+    					android:layout_height="50dp"
+    					
+                        android:id="@+id/handle"></ImageButton>
+                <ListView android:id="@+id/content"
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                 >
+ 
+                </ListView>
+        </SlidingDrawer>
 </LinearLayout>
