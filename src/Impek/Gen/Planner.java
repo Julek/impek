@@ -14,6 +14,10 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 
+// Alex and andrejs magic
+// TODO: test with ficticious task 
+// TODO: Link everything!! (UI PENDING)
+
 public class Planner extends Observable implements Observer {
 
 	private WebServicesCom wsc = null;

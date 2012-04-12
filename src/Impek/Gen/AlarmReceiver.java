@@ -1,11 +1,21 @@
 package Impek.Gen;
 
 
+import android.R.raw;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
  
 public class AlarmReceiver extends BroadcastReceiver {
  
@@ -13,10 +23,20 @@ public class AlarmReceiver extends BroadcastReceiver {
  public void onReceive(Context context, Intent intent) {
    try {
 	   	 Intent newIntent = new Intent(context, AlarmHandler.class);
-	   //  newIntent.putExtra("alarm_message", );
-	     newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	   	 Vibrator vibe = ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE));
+	   	 vibe.vibrate(1000);
+	   	 
+	   	 
+	   	Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+	   	//Ringtone r = RingtoneManager.getRingtone(context, notification);
+	   	//r.play();
+
+	   	// fetch setting calendarprofile/settings/silent ?
+	  
+	     
+	   	 newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	     context.startActivity(newIntent);
-	     Bundle bundle = intent.getExtras();
+	     //Bundle bundle = intent.getExtras();
 	     //String message = bundle.getString("alarm_message");
 	     //Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     } catch (Exception e) {

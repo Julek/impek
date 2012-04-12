@@ -1,5 +1,8 @@
 package Impek.Gen;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import Impek.Gen.GeoConversion.NoGeoConversion;
 import Impek.Gen.GeoLocation.NoLocationError;
 import android.app.Activity;
@@ -33,21 +36,35 @@ public class ImpekActivity extends Activity {
 		GeoLocation.setup_GeoLocation();
 		p = new Planner(curr);
 		update();
+		//fictitiousTask(); // i am trying to get to south ken tomorow at 9
+		//p.addNewEntry("", latitude, longitude, arrival, postcode)
 	}
 		
 	//Commenting this out for my testing (Julek)
 	
+	private void fictitiousTask() {
+		// TODO Auto-generated method stub
+		// fork test for google maps API;
+		Calendar d = Calendar.getInstance();
+		d.add(Calendar.HOUR,1);
+		
+		//p.addNewEntry("UNI .. ", 51.49879, -0.17919, Date.parse(d.toString()),"SW7 1AZ");
+		
+		
+		
+	}
+
 	public void update() {
 		
-		TextView r = ((TextView) findViewById(R.id.textView1));
-		TextView v = ((TextView) findViewById(R.id.textView2));
+		//TextView r = ((TextView) findViewById(R.id.textView1));
+		//TextView v = ((TextView) findViewById(R.id.textView2));
 		TextView s = ((TextView) findViewById(R.id.textView3));	
 		
 		try {
 			double latitude = GeoLocation.getLattitude();
 			double longitude = GeoLocation.getLongitude();
-			v.setText("Long.: " + longitude);
-			r.setText("Lat: " + latitude);
+			//v.setText("Long.: " + longitude);
+			//r.setText("Lat: " + latitude);
 			try {
 				try{
 					String postcode = GeoConversion.reverseGeocode(GeoLocation.getLocation());
@@ -63,20 +80,11 @@ public class ImpekActivity extends Activity {
 				s.setText("N/A");
 			}
 		} catch (NoLocationError e) {
-			r.setText("N/A");
-			v.setText("N/A");
+			//r.setText("N/A");
+			//v.setText("N/A");
 		}
 		
-		Button j = ((Button)findViewById(R.id.button1));
-	
-		j.setOnClickListener(new View.OnClickListener(){
-
-			public void onClick(View v) {
-				Intent f = new Intent(v.getContext(), Impeksettings.class);
-				startActivity(f);
-			}
-			
-		});
+		
 	
 	}
 	
@@ -92,6 +100,10 @@ public class ImpekActivity extends Activity {
 	            Intent t = new Intent(curr,Impekadd.class);
 	            startActivity(t);
 	            return true;
+	        case R.id.calendars:
+	        	Intent c = new Intent(curr,Impekcals.class);
+	        	startActivity(c);
+	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/item1" android:visible="true" android:enabled="true" android:title="Add menu" android:titleCondensed="Add"></item>
+    <item android:id="@+id/calendars" android:visible="true" android:enabled="true" android:title="Calendars" android:titleCondensed="Cals"></item><item android:id="@+id/item1" android:visible="true" android:enabled="true" android:title="Add menu" android:titleCondensed="Add"></item>
     <item android:id="@+id/item2" android:visible="true" android:enabled="true" android:title="settings" android:titleCondensed="Settings"></item>
+    
+    <item android:id="@+id/item3" android:titleCondensed="Help" android:visible="true" android:enabled="true" android:title="Help"></item>
 </menu>

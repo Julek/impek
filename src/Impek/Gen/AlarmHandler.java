@@ -1,6 +1,8 @@
 package Impek.Gen;
 
 import java.io.ObjectInput;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
@@ -8,26 +10,71 @@ import java.util.Observer;
 import android.app.Activity;
 import android.app.LauncherActivity.ListItem;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.method.KeyListener;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 public class AlarmHandler extends Activity implements Observer{
 	static Context curr;
 	Planner s;
 	
-	public AlarmHandler(Planner p) {
-		// TODO Auto-generated constructor stub
-		s= p;
-		s.addObserver(this);
-	}
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ShowPath();
+		//ShowPath();
+		
+		
+		
 		setContentView(R.layout.alarmshow);
+		
 		curr = this;
-		//GeoLocation.setup_GeoLocation();
+		
+		rageAgainst();
+	 	if(true){
+	   		//SoundManager
+	   	  SoundManager.play(curr, R.raw.siriusmo);
+	   	  }
 	}
+
+	
+
+	private void rageAgainst() {
+		// TODO Auto-generated method stub
+		final Button j =((Button) findViewById(R.id.button1));
+		j.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			
+				SoundManager.stop();
+				j.setText("ZZZ  a few minutes won't hurt , thank god for Impek!");
+			}
+		});
+		
+		final Button r =((Button) findViewById(R.id.button2));
+		r.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				SoundManager.stop();
+				 Intent newIntent = new Intent(curr, ImpekActivity.class);
+				 newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				 curr.startActivity(newIntent);
+			}
+		});
+	}
+
+
 
 	private void ShowPath() {
 		Settings r = s.getSettingsInstance();

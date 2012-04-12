@@ -4,37 +4,79 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <DatePicker
-        android:id="@+id/datePicker1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
-    <TimePicker
-        android:id="@+id/timePicker1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine" >
-
-        <requestFocus />
-    </EditText>
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/loc"
-        android:gravity="center_horizontal"
+        android:text="fetch event"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton1"
+    <Spinner
+        android:id="@+id/spinner1"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:text="Find Calendar Event" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Calendar Event" />
+    
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="Alert me as late as possible" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:text="Alert me at a reasonable time" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alert me at the earliest time possible" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AlarmTest" />
+
+    <SlidingDrawer
+        android:id="@+id/slidingDrawer1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:content="@+id/content"
+        android:handle="@+id/handle" >
+
+        <Button
+            android:id="@+id/handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Handle" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </LinearLayout>
+    </SlidingDrawer>
 
 </LinearLayout>

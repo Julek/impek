@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/topbanner"
+        android:layout_width="fill_parent"
+        android:layout_height="66dp" >
+
+<ImageButton
+    android:id="@+id/lastmonth"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:background="@drawable/lastmonthbutton" 
+    >
+	
+</ImageButton>
+	<ImageButton
+    android:id="@+id/lastweek"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:background="@drawable/lastweekbutton" 
+    >
+
+</ImageButton>
+ 
+        <LinearLayout
+            android:id="@+id/Dateindicators"
+            android:layout_width="112dp"
+            android:layout_height="66dp"
+            android:orientation="vertical" >
+
+		      <TextView 
+			    android:id= "@+id/Dayoftheweek"
+			    android:layout_width="fill_parent"
+			    android:layout_height="22dp"
+			    android:gravity ="center_horizontal"
+			    ></TextView>
+            
+			<TextView 
+				    android:id= "@+id/generalDate"
+			    android:layout_width="fill_parent"
+			    android:layout_height="22dp"
+			    android:gravity ="center_horizontal"
+                ></TextView>
+            
+			
+            	<TextView 
+			    android:id= "@+id/calendarselection"
+			    
+			    android:layout_width="fill_parent"
+			    android:layout_height="22dp"
+			    android:gravity ="center_horizontal"
+                ></TextView>
+      
+        </LinearLayout>
+
+        
+        <ImageButton
+            android:id="@+id/nextweek"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/nextweekbutton" />
+                   
+        <ImageButton
+            android:id="@+id/nextmonth"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/nextmonthbutton" />
+		
+    </LinearLayout>
+    
+    <Spinner 
+        android:id="@+id/spinner1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+        
+        />
+  <RelativeLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:id="@+id/layout">
+    
+        <ListView 
+        android:id="@+id/all_stuff"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+            
+         
+            
+        </ListView>
+        
+  </RelativeLayout>
+     
+</LinearLayout>

@@ -16,8 +16,8 @@ public class GeoLocation {
 		location = null;
 		locationManager = (LocationManager) ImpekActivity.curr.getSystemService(Context.LOCATION_SERVICE);
 		listener = new GeoLocation.LocListener();
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 30, listener);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 30, listener);
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 20, 30, listener);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20, 30, listener);
 	}
 	
 	/*public static void single_update()
