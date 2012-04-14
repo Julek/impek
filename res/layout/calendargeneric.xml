@@ -8,20 +8,25 @@
     <LinearLayout
         android:id="@+id/topbanner"
         android:layout_width="fill_parent"
-        android:layout_height="66dp" >
+        android:layout_height="66dp"
+        android:gravity="center_horizontal"
+         >
 
 <ImageButton
     android:id="@+id/lastmonth"
-    android:layout_width="48dp"
-    android:layout_height="48dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/lastmonthbutton" 
+        android:gravity="right"
     >
 	
 </ImageButton>
 	<ImageButton
     android:id="@+id/lastweek"
-    android:layout_width="48dp"
-    android:layout_height="48dp"
+    
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:gravity="right"
     android:background="@drawable/lastweekbutton" 
     >
 
@@ -29,8 +34,10 @@
  
         <LinearLayout
             android:id="@+id/Dateindicators"
-            android:layout_width="112dp"
+            android:layout_width="wrap_content"
             android:layout_height="66dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:orientation="vertical" >
 
 		      <TextView 
@@ -61,14 +68,17 @@
         
         <ImageButton
             android:id="@+id/nextweek"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+
             android:background="@drawable/nextweekbutton" />
                    
         <ImageButton
             android:id="@+id/nextmonth"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
             android:background="@drawable/nextmonthbutton" />
 		
     </LinearLayout>

@@ -8,24 +8,30 @@
     <DigitalClock
         android:id="@+id/digitalClock1"
         android:layout_width="wrap_content"
-        android:layout_height="93dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="DigitalClock"
         android:textColor="#0099CC"
         android:textSize="80px" />
-
+<TextView 
+    android:id="@+id/datetoday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    
     <ProgressBar
         android:id="@+id/ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fetching location .."
+        android:text="standby"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
        <SlidingDrawer android:id="@+id/slidingDrawer1"
@@ -35,7 +41,7 @@
                 <ImageButton 
                         android:layout_width="fill_parent" 
                         android:background="@drawable/upcomingbanner"
-    					android:layout_height="50dp"
+    					android:layout_height="30dp"
     					
                         android:id="@+id/handle"></ImageButton>
                 <ListView android:id="@+id/content"

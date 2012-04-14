@@ -1,22 +1,22 @@
 package Impek.Gen;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.zip.Inflater;
 
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Interpolator;
-
-import android.util.Log;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
+
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -29,9 +29,9 @@ import android.os.Bundle;
 
 /*
  * 
- * This is most simply the most Awesome Calendar UI ever :p
- * I am proud of this baby ..
- * sorry for lack of comments documentation will come when no deadlines are due
+ * This is the Awesome Calendar UI I designed :D 
+ * 
+ * sorry for lack of comments ,documentation will come when no exams/deadlines are due :D
  * 
  */
 
@@ -39,6 +39,8 @@ public class LocalCal extends Activity implements OnGestureListener {
 		static Context curr;
 		Calendar currentView;
 		String [] Days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+		String[]Months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Oct","Nov","Dec"};
+		boolean [] eventExists = new boolean [24];
 		private GestureDetector gestureScanner; 
 		ArrayAdapter<String> listAdapter;
 		
@@ -53,6 +55,7 @@ public class LocalCal extends Activity implements OnGestureListener {
 		
 		public void addEvent(int hour,String Desc, String location){
 		   hours[hour]= hours[hour]+"   "+Desc+" @"+location;
+		   eventExists[hour] = true;
 		   if(listAdapter!=null){
 		    listAdapter.notifyDataSetChanged();
 		}
@@ -139,7 +142,46 @@ public class LocalCal extends Activity implements OnGestureListener {
 		    	ListView t = (ListView)findViewById(R.id.all_stuff);
 		    	listAdapter= new ArrayAdapter<String>(this,R.layout.calendarslot,hours); 
 		    	t.setAdapter(listAdapter);
-	
+		    	
+		    	t.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		    	    public void onItemClick(android.widget.AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
+		    		if(eventExists[arg2]){
+		    		Intent c = new Intent(curr,Impekedit.class);
+		        	c.putExtra("Time", arg0.getSelectedItemId());
+		    		startActivity(c);
+		    		}
+		    		else{
+		    		Intent c = new Intent(curr,Impekadd.class);
+		        	c.putExtra("Time", arg0.getSelectedItemId());
+		    		startActivity(c);
+		    		}
+		    	    }
+		    	});
+			t.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+		    	    public boolean onItemLongClick(android.widget.AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
+		    		
+		    		if(eventExists[arg2]){
+		    		AlertDialog.Builder builder = new AlertDialog.Builder(curr);
+		    		builder.setMessage("Are you sure you want to cancel this event?")
+		    		       .setCancelable(false)
+		    		       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		    		           public void onClick(DialogInterface dialog, int id) {
+		    		                
+		    		           }
+		    		       })
+		    		       .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		    		           public void onClick(DialogInterface dialog, int id) {
+		    		                dialog.cancel();
+		    		           }
+		    		       });
+		    		AlertDialog alert = builder.create();
+				alert.show();
+		    		}
+		    		return true;
+		    	    }
+		    	});
+		    	  
+
 		}
 		
 		
@@ -152,8 +194,8 @@ public class LocalCal extends Activity implements OnGestureListener {
 			currentView=t;	
 			
 			TextView generic = (TextView)(findViewById(R.id.generalDate));
-			String genText = t.get(Calendar.DAY_OF_MONTH)+"/"
-				+(t.get(Calendar.MONTH)+"/"+t.get(Calendar.YEAR));
+			String genText = t.get(Calendar.DAY_OF_MONTH)+" "
+				+Months[t.get(Calendar.MONTH)-1]+" "+t.get(Calendar.YEAR);
 			
 			generic.setText(genText);
 			TextView spec = (TextView)(findViewById(R.id.Dayoftheweek));		
@@ -328,6 +370,6 @@ public class LocalCal extends Activity implements OnGestureListener {
 	                
 		 }
 		 
-		 
+		
 		
 }

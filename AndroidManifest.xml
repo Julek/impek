@@ -33,7 +33,13 @@
             android:name=".Impekadd"
             
             ></activity>
-          <activity 
+        
+         <activity 
+            android:name=".Impekedit"
+            
+            ></activity>
+         
+         <activity 
             android:name=".AlarmHandler"
             
             ></activity>

@@ -1,25 +1,23 @@
 package Impek.Gen;
 
+import java.sql.Date;
 import java.util.Calendar;
-import java.util.Date;
-
 import Impek.Gen.GeoConversion.NoGeoConversion;
 import Impek.Gen.GeoLocation.NoLocationError;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.pm.LabeledIntent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,8 +29,12 @@ public class ImpekActivity extends Activity {
 	private int mProgressStatus=0;
 	public static Context curr;
 
-	ArrayAdapter<String> listAdapter;
+	String [] Days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+	String[]Months = {"January","February","March","April","May","June","July","August","October","November","December"};
 	
+	
+	ArrayAdapter<Event> listAdapter;
+	EventsDataSource databaseaccess;
 	
 	//TextView drop_list = ((TextView) findViewById(R.id.listView1));
 	
@@ -43,44 +45,124 @@ public class ImpekActivity extends Activity {
 		curr = this;
 		GeoLocation.setup_GeoLocation();
 		p = new Planner(curr);
+		TextView date = (TextView)findViewById(R.id.datetoday);
+		Calendar cal  = Calendar.getInstance();
+		date.setText(Days[cal.get(Calendar.DAY_OF_WEEK)-1]+", "
+		+cal.get(Calendar.DATE) + " "
+		+Months[cal.get(Calendar.MONTH)-1] +" "
+		+ (cal.get(Calendar.YEAR))
+			);
 		
 		         final ProgressBar mProgress = (ProgressBar) findViewById(R.id.ProgressBar);
 		         // Start lengthy operation in a background thread
 		         new Thread(new Runnable() {
 		             public void run() {
 		                 while (mProgressStatus < 100) {
-		                     mProgressStatus = update();
+		                     //mProgressStatus=update();
 
 		                     // Update the progress bar
 		                     mHandler.post(new Runnable() {
 		                         public void run() {
 		                             mProgress.setProgress(mProgressStatus);
-		                            
+		                             
 		                         }
+		                        
 		                     });
+		                     
 		                 }
+		                 
 		                 // Put a static cool glowing image when connected
-		             
 		             }
+		             
+		             
+		             
 		     
 		         }).start();
-		         
-		         	String [] test =new String[]{
-		    			"Go running"+" hyde park in 1 hour",
-		    			"Show up for work @SW17 6NE in 7 hours",
-		    			"performance"+" @speaker's corner in 11 hours",
-		    			"partaaaay"+" @XOYO in 17 hours",
-		    			
-		    			"Hackathon"+" @Imperial College"+" in 2 days",
-		    			"Meeting with JPmorgan"+" @SW7 5NE in 1 week, 3 Days",
-		    			"surprise valeria"+ " @valeria's place in 2 weeks",
-		    			"bowling"," @SW15 8NE in 3 weeks"};
-		    			
-		                ListView t = (ListView)findViewById(R.id.content);
-			    	listAdapter= new ArrayAdapter<String>(this,R.layout.calendarslot,test); 
-			    	t.setAdapter(listAdapter);
+		         // demonstrates addition and access to the Database:D
+		         registerControllers();
+		         //DatabaseTest();
+		                	
 	}
 		 
+	
+ private void registerControllers() {
+	    // TODO Auto-generated method stub
+     	databaseaccess= new EventsDataSource(this);
+     	databaseaccess.open();
+     	
+	ListView t = (ListView)findViewById(R.id.content);
+    	listAdapter= new ArrayAdapter<Event>(this,R.layout.calendarslot,databaseaccess.getAllEvents()); 
+    	t.setAdapter(listAdapter);
+
+     	t.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    	    public void onItemClick(android.widget.AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+    		Intent c = new Intent(curr,Impekedit.class);
+        	c.putExtra("Time", arg0.getSelectedItemId());
+    		startActivity(c);
+
+    	    }
+    	});
+	t.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+    	    public boolean onItemLongClick(android.widget.AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
+    		
+    		
+    		AlertDialog.Builder builder = new AlertDialog.Builder(curr);
+    		builder.setMessage("Are you sure you want to cancel this event?")
+    		       .setCancelable(false)
+    		       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+    		           public void onClick(DialogInterface dialog, int id) {
+    		        	
+    		               Event event  = (Event)listAdapter.getItem(arg2);
+    		               databaseaccess.open();
+    		               
+    		        	databaseaccess.deleteEvent(event);
+				listAdapter.remove(event);
+			      databaseaccess.close();
+    		           
+    		           }
+    		       
+    		       
+    		       
+    		       })
+    		       .setNegativeButton("No", new DialogInterface.OnClickListener() {
+    		           public void onClick(DialogInterface dialog, int id) {
+    		                dialog.cancel();
+    		           }
+    		       });
+    		AlertDialog alert = builder.create();
+		alert.show();
+    		return true;
+    	    }
+    	});
+    	  
+
+	}
+
+private static int testcase ;
+public void DatabaseTest(){	
+    databaseaccess.open();
+ 	String [] test =new String[]{
+			"Go running",
+			"Show up for work ",
+			"performance",
+			"partaaaay",
+			
+			"Hackathon",
+			"Meeting with JPmorgan",
+			"surprise valeria",
+			"bowling"};
+			
+
+ 	    databaseaccess.createEvent(test[testcase],testcase,"2012-11-01"
+		    ,3,testcase+30.5,testcase +55,"Sloane Square", testcase);
+	
+ 	
+    	
+ 	 databaseaccess.close();
+    	 listAdapter.notifyDataSetChanged();
+ }
+	
+	
 		
 		
 		//fictitiousTask(); // i am trying to get to south ken tomorow at 9
@@ -105,51 +187,48 @@ public class ImpekActivity extends Activity {
 		
 		//TextView r = ((TextView) findViewById(R.id.textView1));
 		//TextView v = ((TextView) findViewById(R.id.textView2));
-		TextView s = ((TextView) findViewById(R.id.textView3));	
-    		
-		return 100;
-	}
-//		try {
-//		    	
-//			double latitude = GeoLocation.getLattitude();
-//			double longitude = GeoLocation.getLongitude();
-//			s.setText("Your Geographical cordinates are "+latitude+" "+longitude);
-//			//v.setText("Long.: " + longitude);
-//			//r.setText("Lat: " + latitude);
-//			try {
-//				try{
-//					String postcode = GeoConversion.reverseGeocode(GeoLocation.getLocation());
-//					s.setText("You were Located at: "+postcode);
-//					p.notificationOfPosition(latitude, longitude, postcode);
-//				}
+		TextView s = ((TextView) findViewById(R.id.status));	
+		s.setText("fetching location");
+		try {
+		    	
+			double latitude = GeoLocation.getLattitude();
+			double longitude = GeoLocation.getLongitude();
+			
+			s.setText("Your Geographical cordinates are "+latitude+" "+longitude);
+			//v.setText("Long.: " + longitude);
+			//r.setText("Lat: " + latitude);
+				//try{
+					//String postcode = GeoConversion.reverseGeocode(GeoLocation.getLocation());
+					s.setText("You were Located at: "+"djerba midoun");//postcode);
+					mProgressStatus=100;
+					mHandler.notify();
+					//p.notificationOfPosition(latitude, longitude, postcode);
+				//}
 //				catch(NoGeoConversion e)
 //				{
 //				    
-//					s.setText("N/A");
+//					s.setText("reverse lookup ..");
 //				}
 //				
-//			} catch (NoLocationError e) {
-//				s.setText("N/A");
-//			}
-//		} catch (NoLocationError e) {
-//			//r.setText("N/A");
-//			//v.setText("N/A");
-//		    return 100;
-//		}
-//		
-//		return 100;
-//	
-//	}
+			} catch (NoLocationError e) {
+			    s.setText("no fix, check GPS settings");	
+			   
+			}
+		
+		
+		return 100;
+	
+	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
 	    switch (item.getItemId()) {
-	        case R.id.item2:
+	        case R.id.settingsmain:
 	        	Intent f = new Intent(curr, Impeksettings.class);
 				startActivity(f);
 	            return true;
-	        case R.id.item1:
+	        case R.id.nouveau:
 	            Intent t = new Intent(curr,Impekadd.class);
 	            startActivity(t);
 	            return true;
@@ -157,6 +236,10 @@ public class ImpekActivity extends Activity {
 	        	Intent c = new Intent(curr,Impekcals.class);
 	        	startActivity(c);
 	        	return true;
+	        case R.id.helpmenu:
+	            DatabaseTest();
+	            //update();
+	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
@@ -172,7 +255,7 @@ public class ImpekActivity extends Activity {
 	
 	
 	public void reverseTest(String r){
-		TextView rs = ((TextView) findViewById(R.id.textView3));
+		TextView rs = ((TextView) findViewById(R.id.status));
 		rs.setText(r);
 	}
 		
