@@ -33,6 +33,7 @@ public class ImpekActivity extends Activity {
 	String[]Months = {"January","February","March","April","May","June","July","August","October","November","December"};
 	
 	
+	ListView upcomingevents;
 	ArrayAdapter<Event> listAdapter;
 	EventsDataSource databaseaccess;
 	
@@ -79,6 +80,7 @@ public class ImpekActivity extends Activity {
 		     
 		         }).start();
 		         // demonstrates addition and access to the Database:D
+
 		         registerControllers();
 		         //DatabaseTest();
 		                	
@@ -87,14 +89,24 @@ public class ImpekActivity extends Activity {
 	
  private void registerControllers() {
 	    // TODO Auto-generated method stub
-     	databaseaccess= new EventsDataSource(this);
-     	databaseaccess.open();
      	
-	ListView t = (ListView)findViewById(R.id.content);
-    	listAdapter= new ArrayAdapter<Event>(this,R.layout.calendarslot,databaseaccess.getAllEvents()); 
-    	t.setAdapter(listAdapter);
+	upcomingevents = (ListView)findViewById(R.id.content);
 
-     	t.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+	new Thread(new Runnable() {
+            public void run() {
+        	databaseaccess= new EventsDataSource(curr);
+             	databaseaccess.open();
+
+        	listAdapter= new ArrayAdapter<Event>(curr,R.layout.calendarslot,databaseaccess.getAllEvents()); 
+        	databaseaccess.close();
+            	upcomingevents.setAdapter(listAdapter);
+            }
+                
+                
+            }).start();
+            
+
+     	upcomingevents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
     	    public void onItemClick(android.widget.AdapterView<?> arg0, View arg1, int arg2, long arg3) {
     		Intent c = new Intent(curr,Impekedit.class);
         	c.putExtra("Time", arg0.getSelectedItemId());
@@ -102,7 +114,7 @@ public class ImpekActivity extends Activity {
 
     	    }
     	});
-	t.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+	upcomingevents.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
     	    public boolean onItemLongClick(android.widget.AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
     		
     		
@@ -138,29 +150,34 @@ public class ImpekActivity extends Activity {
 
 	}
 
-private static int testcase ;
+private static int testcase =0 ;
 public void DatabaseTest(){	
-    databaseaccess.open();
- 	String [] test =new String[]{
+ 	
+
+    final String [] test =new String[]{
 			"Go running",
 			"Show up for work ",
 			"performance",
 			"partaaaay",
 			
 			"Hackathon",
-			"Meeting with JPmorgan",
-			"surprise valeria",
+			"Meeting ",
+			"surprise test",
 			"bowling"};
-			
+    
+    	databaseaccess= new EventsDataSource(curr);
 
- 	    databaseaccess.createEvent(test[testcase],testcase,"2012-11-01"
+ 		databaseaccess.open();
+ 		 
+ 		databaseaccess.createEvent(test[testcase],testcase,"2012-11-01"
 		    ,3,testcase+30.5,testcase +55,"Sloane Square", testcase);
-	
- 	
-    	
- 	 databaseaccess.close();
-    	 listAdapter.notifyDataSetChanged();
- }
+ 	    testcase++;
+ 	    
+    	listAdapter= new ArrayAdapter<Event>(curr,R.layout.calendarslot,databaseaccess.getAllEvents()); 
+    	databaseaccess.close();
+
+    	upcomingevents.setAdapter(listAdapter);        
+}
 	
 	
 		

@@ -80,6 +80,7 @@ public class EventsDataSource {
 		while (!cursor.isAfterLast()) {
 			Event event = cursorToEvent(cursor);
 			events.add(event);
+			Log.e("added","the event");
 			cursor.moveToNext();
 		}
 		// Make sure to close the cursor
