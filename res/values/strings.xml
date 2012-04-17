@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="hello">Hello World, ImpekActivity!</string>
     <string name="app_name">Impek</string>
     <string name="Settings"></string>
     <string name="set">Settings</string>
     <string name="loc">googleApis</string>
     <string name="the">The Time Is Now!</string>
-
+	<string name = "search_label">Impek event search</string>
+	<string name = "search_hint">search events by group or alias</string>
 </resources>

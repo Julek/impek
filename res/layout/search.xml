@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id= "@+id/searchres"
+	android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="mock UI"
-         />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search Event" />
-
-</LinearLayout>
+</ListView>

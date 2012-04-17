@@ -2,42 +2,77 @@ package Impek.Gen;
 
 import java.util.Calendar;
 import java.util.Date;
-
+import android.widget.EditText;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class Impekadd extends Activity{
 	static Context curr;
-
+	int time;
+	String date;
+	int group;
+	double lat = 0;
+	double longit = 0;
+	String alias = "Ice cream shop";
+	int duration = 1;
+	EventsDataSource databaseaccess;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addmenu);
 		curr = this;
 		
-		Button alarmMe = (Button) findViewById(R.id.button3);
-		alarmMe.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				 Calendar d = Calendar.getInstance();
-				d.add(Calendar.SECOND,5);
-				setAlarm(d.getTime(),52,"This is what's up");
-				//GeoLocation.setup_GeoLocation();
-				calendarAddselector();
-			}
-		});
+			    	Bundle extra = getIntent().getExtras();
+			    	 time =  extra.getInt("Time");
+			    	 date = extra.getString("Date");
+			    	 group = extra.getInt("Group");
+			    	databaseaccess  =new EventsDataSource(curr);
+			    	
 
-		
+			    	
+			    	TextView t = (TextView) findViewById(R.id.datemaleable);
+			    	t.setText("Schedule Event on " + date + "\n at " + time + "\n in Calendar " + group);
+				//setAlarm(d.getTime(),52,"This is what's up");
+				//GeoLocation.setup_GeoLocation();
+				//calendarAddselector();
+			    	//Log.e("dump",time + " " + date +  " " + group);
+		registerControllers();
 	}
 	
+	
+private void registerControllers() {
+    Button validate = (Button) findViewById(R.id.button1);
+    final EditText t = (EditText) findViewById(R.id.editText1);
+  
+    validate.setOnClickListener(new View.OnClickListener() {
+        
+        public void onClick(View v) {
+    	// TODO Auto-generated method stub
+            createEvent( t.getText().toString(), time, date,duration, longit ,  lat ,  alias, group);
+     
+        }
+    });
+	    // TODO Auto-generated method stub
+}
+
+
+private void createEvent(String event, int time,String date,int duration,double longitude , double lat , String alias,int groupId) {
+		databaseaccess.open();
+		 databaseaccess.createEvent(event, time, date, duration, longitude, lat, alias, groupId);
+		Log.e("gor","here");
+	databaseaccess.close();
+
+}
 	
 	
 	static int requestId = 192837;
@@ -59,22 +94,6 @@ public void calendarAddselector(){
 		Spinner spin=(Spinner)findViewById(R.id.spinner1);
 		spin.setAdapter(ad);
 		//spin.setOnItemClickListener(new OnItemSelectedListener()
-//{
-//
-//public void onItemSelected(AdapterView arg0, View arg1,
-//int arg2, long arg3) {
-//	TextView txt=(TextView)findViewById(R.id.txt);
-//	TextView temp=(TextView)arg1;
-//	txt.setText(temp.getText());
-//
-//}
-//
-//public void onNothingSelected(AdapterView arg0) {
-//// TODO Auto-generated method stub
-//
-//}
-//
-//});
 
 }
 

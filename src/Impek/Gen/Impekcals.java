@@ -38,9 +38,8 @@ import android.widget.TabWidget;
 
 public class Impekcals extends TabActivity{
     boolean fullscreen = false;
-    
+   
     public void onCreate(Bundle savedInstanceState) {
-
 		    super.onCreate(savedInstanceState);
 		    setContentView(R.layout.calendars);
 		    Resources res = getResources(); // Resource object to get Drawables

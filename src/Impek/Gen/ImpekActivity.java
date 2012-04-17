@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,10 +31,10 @@ public class ImpekActivity extends Activity {
 	public static Context curr;
 
 	String [] Days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-	String[]Months = {"January","February","March","April","May","June","July","August","October","November","December"};
+	String[]Months = {"January","February","March","April","May","June","July","August","Sept","October","November","December"};
 	
 	
-	ListView upcomingevents;
+	static ListView upcomingevents;
 	ArrayAdapter<Event> listAdapter;
 	EventsDataSource databaseaccess;
 	
@@ -45,12 +46,13 @@ public class ImpekActivity extends Activity {
 		setContentView(R.layout.main);
 		curr = this;
 		GeoLocation.setup_GeoLocation();
-		p = new Planner(curr);
+		
+		//p = new Planner(curr);
 		TextView date = (TextView)findViewById(R.id.datetoday);
 		Calendar cal  = Calendar.getInstance();
 		date.setText(Days[cal.get(Calendar.DAY_OF_WEEK)-1]+", "
 		+cal.get(Calendar.DATE) + " "
-		+Months[cal.get(Calendar.MONTH)-1] +" "
+		+Months[cal.get(Calendar.MONTH)] +" "
 		+ (cal.get(Calendar.YEAR))
 			);
 		
@@ -59,7 +61,7 @@ public class ImpekActivity extends Activity {
 		         new Thread(new Runnable() {
 		             public void run() {
 		                 while (mProgressStatus < 100) {
-		                     //mProgressStatus=update();
+		                     mProgressStatus=update();
 
 		                     // Update the progress bar
 		                     mHandler.post(new Runnable() {
@@ -82,8 +84,23 @@ public class ImpekActivity extends Activity {
 		         // demonstrates addition and access to the Database:D
 
 		         registerControllers();
-		         //DatabaseTest();
-		                	
+		         //DatabaseTes;t();
+//		         if( listAdapter!=null && listAdapter.isEmpty() ){
+//		             Button j = new Button(this);
+//		             j.setText("No events upcoming .. \nclick to schedule an event");
+//		             j.setOnClickListener(new View.OnClickListener() {
+//			        
+//			        public void onClick(View v) {
+//			    	// TODO Auto-generated method stub
+//			    	Intent t = new Intent(curr,Impekcals.class);
+//			    	startActivity(t);
+//			        }
+//			    });
+//		             View t = (View)j;
+//		             upcomingevents.addFooterView(t);
+//		         }
+//		         upcomingevents.setAdapter(listAdapter);
+//		         Log.e("this","happened");
 	}
 		 
 	
@@ -99,7 +116,8 @@ public class ImpekActivity extends Activity {
 
         	listAdapter= new ArrayAdapter<Event>(curr,R.layout.calendarslot,databaseaccess.getAllEvents()); 
         	databaseaccess.close();
-            	upcomingevents.setAdapter(listAdapter);
+        	listAdapter.notifyDataSetChanged();
+        	
             }
                 
                 
@@ -109,10 +127,12 @@ public class ImpekActivity extends Activity {
      	upcomingevents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
     	    public void onItemClick(android.widget.AdapterView<?> arg0, View arg1, int arg2, long arg3) {
     		Intent c = new Intent(curr,Impekedit.class);
-        	c.putExtra("Time", arg0.getSelectedItemId());
+        	
     		startActivity(c);
 
     	    }
+
+	  
     	});
 	upcomingevents.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
     	    public boolean onItemLongClick(android.widget.AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
@@ -126,7 +146,6 @@ public class ImpekActivity extends Activity {
     		        	
     		               Event event  = (Event)listAdapter.getItem(arg2);
     		               databaseaccess.open();
-    		               
     		        	databaseaccess.deleteEvent(event);
 				listAdapter.remove(event);
 			      databaseaccess.close();
@@ -231,8 +250,6 @@ public void DatabaseTest(){
 			    s.setText("no fix, check GPS settings");	
 			   
 			}
-		
-		
 		return 100;
 	
 	}

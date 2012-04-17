@@ -72,9 +72,8 @@ public class EventsDataSource {
 
 	public List<Event> getAllEvents() {
 		List<Event> events = new ArrayList<Event>();
-
 		Cursor cursor = database.query(MySQLiteHelper.TABLE_EVENTS,
-				allColumns, null, null, null, null, null);
+				allColumns, null, null, null, null, MySQLiteHelper.COLUMN_DATE);
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
@@ -101,6 +100,75 @@ public class EventsDataSource {
 		event.setGroupid(cursor.getInt(cursor.getInt(8)));
 		return event;
 	}
-}
+
+	public List<Event> runsearch(String query) {
+	    // TODO Auto-generated method stub
+	    
+	    /*
+	     * code for search in progress .. will do laterzz 
+	     */
+	    return getAllEvents();
+	}
+
+	
+	
+	
+	
+	/*
+	 * Start of code for search (snippet from tutorial .. )
+	 * 
+	 */
+	
+	// String selection = KEY_WORD + " MATCH ?";
+	       // String[] selectionArgs = new String[] {query+"*"};
+
+	      //  return query(selection, selectionArgs, columns);
+
+	        /* This builds a query that looks like:
+	         *     SELECT <columns> FROM <table> WHERE <KEY_WORD> MATCH 'query*'
+	         * which is an FTS3 search for the query text (plus a wildcard) inside the word column.
+	         *
+	         * - "rowid" is the unique id for all rows but we need this value for the "_id" column in
+	         *    order for the Adapters to work, so the columns need to make "_id" an alias for "rowid"
+	         * - "rowid" also needs to be used by the SUGGEST_COLUMN_INTENT_DATA alias in order
+	         *   for suggestions to carry the proper intent data.
+	         *   These aliases are defined in the DictionaryProvider when queries are made.
+	         * - This can be revised to also search the definition text with FTS3 by changing
+	         *   the selection clause to use FTS_VIRTUAL_TABLE instead of KEY_WORD (to search across
+	         *   the entire table, but sorting the relevance could be difficult.
+	         */
+	    }
+
+	    /**
+	     * Performs a database query.
+	     * @param selection The selection clause
+	     * @param selectionArgs Selection arguments for "?" components in the selection
+	     * @param columns The columns to return
+	     * @return A Cursor over all rows matching the query
+	     */
+//	    private Cursor query(String selection, String[] selectionArgs, String[] columns) {
+//	        /* The SQLiteBuilder provides a map for all possible columns requested to
+//	         * actual columns in the database, creating a simple column alias mechanism
+//	         * by which the ContentProvider does not need to know the real column names
+//	         */
+//	        //SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
+//	        builder.setTables(FTS_VIRTUAL_TABLE);
+//	        builder.setProjectionMap(mColumnMap);
+//
+//	        Cursor cursor = builder.query(mDatabaseOpenHelper.getReadableDatabase(),
+//	                columns, selection, selectionArgs, null, null, null);
+//
+//	        if (cursor == null) {
+//	            return null;
+//	        } else if (!cursor.moveToFirst()) {
+//	            cursor.close();
+//	            return null;
+//	        }
+//	        return cursor;
+//	    }
+//
+//	    return null;
+//	}
+
 
 		

@@ -39,11 +39,13 @@ public class LocalCal extends Activity implements OnGestureListener {
 		static Context curr;
 		Calendar currentView;
 		String [] Days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-		String[]Months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Oct","Nov","Dec"};
+		String[]Months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"};
+		
 		boolean [] eventExists = new boolean [24];
 		private GestureDetector gestureScanner; 
 		ArrayAdapter<String> listAdapter;
 		
+		int groupId;
 		
 		  String[] hours = new String[] {
 		    "00:00", "01:00", "02:00", "03:00", "04:00",
@@ -133,7 +135,13 @@ public class LocalCal extends Activity implements OnGestureListener {
 		ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		Spinner spin=(Spinner)findViewById(R.id.spinner1);
 		spin.setAdapter(ad);
-		
+		spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+		    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+		        groupId = pos;
+		    }
+		    public void onNothingSelected(AdapterView<?> parent) {
+		    }
+		});
 		
 		}
 		
@@ -147,15 +155,28 @@ public class LocalCal extends Activity implements OnGestureListener {
 		    	    public void onItemClick(android.widget.AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
 		    		if(eventExists[arg2]){
 		    		Intent c = new Intent(curr,Impekedit.class);
-		        	c.putExtra("Time", arg0.getSelectedItemId());
-		    		startActivity(c);
+		    		
+		        	c.putExtra("Time", arg2);
+		        	c.putExtra("Date", toSQL());
+		        	c.putExtra("Group",groupId);
+		        	startActivity(c);
 		    		}
 		    		else{
 		    		Intent c = new Intent(curr,Impekadd.class);
-		        	c.putExtra("Time", arg0.getSelectedItemId());
+		    		c.putExtra("Time", arg2);
+		        	c.putExtra("Date", toSQL());
+		        	c.putExtra("Group",groupId);
 		    		startActivity(c);
 		    		}
 		    	    }
+
+			    private String toSQL() {
+				// returns an SQL representation of the current date
+				return currentView.get(Calendar.YEAR)+"-"+
+					currentView.get(Calendar.MONTH) +"-"+
+					currentView.get(Calendar.DATE);
+					
+			    }
 		    	});
 			t.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 		    	    public boolean onItemLongClick(android.widget.AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
@@ -194,8 +215,9 @@ public class LocalCal extends Activity implements OnGestureListener {
 			currentView=t;	
 			
 			TextView generic = (TextView)(findViewById(R.id.generalDate));
+			
 			String genText = t.get(Calendar.DAY_OF_MONTH)+" "
-				+Months[t.get(Calendar.MONTH)-1]+" "+t.get(Calendar.YEAR);
+				+Months[t.get(Calendar.MONTH)]+" "+t.get(Calendar.YEAR);
 			
 			generic.setText(genText);
 			TextView spec = (TextView)(findViewById(R.id.Dayoftheweek));		
