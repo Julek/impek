@@ -6,14 +6,14 @@ import android.util.Log;
 public class Event {
 	private long id;
 	private String comment;
-	private int time;
+	private int time = -1;
 	private String date;
 	private int duration;
 	private double longitude;
 	private double lat;
 	private String alias;
 	private int groupid;
-	
+	private boolean isDummy = false;
 	
 	public long getId() {
 		return id;
@@ -34,7 +34,12 @@ public class Event {
 	// Will be used by the ArrayAdapter in the ListView
 	@Override
 	public String toString() {
-	    	return time +":00      "+ comment +" "+date +" " + lat+" "+ longitude + " "+ alias.toString() + " " +duration + " "+groupid;
+	 if(isDummy){
+	     
+	     return time+":00";
+	 }
+	    //return time +":00      "+ comment +" "+date +" " + lat+" "+ longitude + " "+ alias.toString() + " " +duration + " "+groupid;
+	    	return time+":00      "+ comment +" "+date +" " + lat+" "+ longitude + " "+ alias.toString() + " " +duration + " "+groupid;
 	}
 
 	
@@ -93,5 +98,8 @@ public class Event {
 
 	public void setGroupid(int groupid) {
 	    this.groupid = groupid;
+	}
+	public void setDummy(){
+	    isDummy = true;
 	}
 }

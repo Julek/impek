@@ -1,0 +1,586 @@
+commit 74311445c5409504f1b3eb12f6c6a64c69c99f14
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Tue Apr 17 02:19:16 2012 +0100
+
+    Fixed most bugs (One of them due to forgetting the month of september :D) , add screen now working properly , sort by date on main screen working , working on google maps to replace the stub location and on the main screen refresh function also a content provider is almost done that will allow search suggestions .. yoopi
+
+commit 1fe86faf527e87af105a302ea90d887b07c786d8
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Apr 15 04:31:32 2012 +0100
+
+    no more bugs in database .. plugging in the search now .. :D
+
+commit 4a5a7e369b14eb1fdeccede485798dca9096ab36
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Apr 15 00:22:11 2012 +0100
+
+    cleaned up ..
+
+commit 45d143c945cd3de6ea65e5b24a1b5b7b9afdfd23
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sat Apr 14 10:29:57 2012 +0100
+
+    reasonably stable database .. demonstration is tested by pressing help next step is plugging the database in main calendar :D search is coming next
+
+commit e76f86bb8d541420caf3c13b7b3facdefcbea47c
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Thu Apr 12 13:30:29 2012 +0100
+
+     pimped out main activity to provide usefull info
+
+commit 3036ce55bfad269dc7ce6f05cd71b2550f228a79
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Thu Apr 12 02:42:31 2012 +0100
+
+    this is one bigass commit , 2 weeks of work in this commit .. please mind it :D
+
+commit f7329649cb626aa6896795e601aecbd1c7743456
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 15:16:27 2012 +0000
+
+    kjsfbhsabf
+
+commit 8f1fc66c9e29fcd651ccda7d4b875ed0c903cb20
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 15:12:33 2012 +0000
+
+    fixed break
+
+commit 30ab46ec875d2ccfea71801ee58dc6325a1faac0
+Merge: 3c2fb70 4a63ade
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 15:05:44 2012 +0000
+
+    merged
+
+commit 3c2fb70c469a3b666fae97bd5ae9ac96eb84ab91
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 15:04:41 2012 +0000
+
+    Stuff
+
+commit 4a63adef3b165fc9e1a503f324bc6576882245ae
+Merge: 5cac30e 1b9c4ee
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 14:58:25 2012 +0000
+
+    Merge branch 'master' of ssh://github.com/Julek/impek
+
+commit 5cac30efdadc34619d25376571c4482f1a0713c9
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 14:58:17 2012 +0000
+
+    it's so sad it's funny , ghandi
+
+commit 1b9c4ee1c6a8efc30488e4ef55fc7aaba0ac4d7f
+Merge: 5ea096a bdc8e6d
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 14:51:09 2012 +0000
+
+    Merge branch 'master' of github.com:Julek/impek
+
+commit 5ea096aaa54510f70e0f5c54121e85fd80bbae45
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 14:50:51 2012 +0000
+
+    NOT NOT NOT TESTEDgit pushgit pushgit pushgit pushgit pushgit pushgit pushgit pushgit pushgit pushgit pushgit push COULD SCREW UP REALLY BADLYgit push! BEWARE
+
+commit bdc8e6d083cca5e8045ce905f54354eedd0fbeb5
+Merge: d7a6b15 834b584
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 14:33:09 2012 +0000
+
+    Merge branch 'master' of ssh://github.com/Julek/impek
+
+commit d7a6b156fb6e40b4718c654916c090f5751b1a14
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 14:33:02 2012 +0000
+
+    can't be bothered to comment , some stuff
+
+commit 834b584da7a58f11b20ce5096df21baa39e62d46
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 13:39:39 2012 +0000
+
+    geolocation now notifies planner
+
+commit 3ced8c82817ca5528fb0729722713d85628735b1
+Merge: 714726f 00d11cb
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 13:29:30 2012 +0000
+
+    Merge branch 'master' of github.com:Julek/impek
+
+commit 714726f3b537f129f79106d712fa7915c3771b9c
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 13:29:24 2012 +0000
+
+    minor
+
+commit 00d11cbc3cb8020d708ed18b0db72f9632c300a1
+Merge: 4659706 08d0f0f
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 13:29:17 2012 +0000
+
+    kkkk
+
+commit 4659706542a87766b8798ce7ff91476f533c6b7e
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 13:28:16 2012 +0000
+
+    thingy
+
+commit 08d0f0f43d840f8623cf03ed0a1f5c01152d8f97
+Merge: 97a37e7 e425de9
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 13:19:53 2012 +0000
+
+    Merge branch 'master' of github.com:Julek/impek
+
+commit 97a37e7b9fd175378f1bf2fe547b05d0aaa79fda
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 13:19:49 2012 +0000
+
+    Advances on geo
+
+commit e425de9809c50322cf2ce288b4c8e9387f46f3d4
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 13:15:22 2012 +0000
+
+    .....
+
+commit c853abdb9645ca823b34bea580b1515040a69ae0
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 12:58:35 2012 +0000
+
+    ...
+
+commit 2760f4d8f41f5e5c6c9a5586426b918e33231894
+Merge: 8f43f94 69e2ff2
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 12:52:36 2012 +0000
+
+    Merge branch 'master' of ssh://github.com/Julek/impek
+
+commit 8f43f94f5e9204ab7e9ac0ca3b6df30cba3c0fc0
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 12:52:31 2012 +0000
+
+    started AlarmHandler
+
+commit 69e2ff2da1fe21d615803ce93f8766f33abde977
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 12:51:41 2012 +0000
+
+    ...
+
+commit c10d6d4be146d0e4a04c5a88f24c71aeacdcaf22
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 12:51:19 2012 +0000
+
+    ...
+
+commit d446760091d33083fc4dd2778bc5b77880306448
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 12:04:28 2012 +0000
+
+    plugged reverse for testing
+
+commit 75ddf3590200087c08803220ccdd89935e791966
+Merge: 54d252e 81e3f13
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 11:31:07 2012 +0000
+
+    Intermediary merge
+
+commit 54d252e6e658682334691cd6734653d29430f6e3
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sun Feb 26 07:54:51 2012 +0000
+
+    Working reverse geolocation
+
+commit 81e3f13f1a7972fc45fcbae08cf81f132986bab7
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 04:59:41 2012 +0000
+
+    Ugly UI core is in the working , start of alarm implementation in add
+
+commit 03fd9803eb721858943a758c31307540423bc3cb
+Merge: f0589ba 7803d74
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 02:33:18 2012 +0000
+
+    Merge branch 'master' of ssh://github.com/Julek/impek
+
+commit f0589babebe3f58c310babd505c477a3864efbdc
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 02:33:11 2012 +0000
+
+    ui stuff ..
+
+commit 7803d747db7d68a59736ad8a61619b812e85999d
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 02:23:25 2012 +0000
+
+    ....
+
+commit 76a230d227d5bbd768e52efebe7bcdac3393af80
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sun Feb 26 02:13:31 2012 +0000
+
+    added type of locomotion to the parser
+
+commit 09990f853b50a2a970adbdc6c6eea8031f29a3f6
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sun Feb 26 02:00:22 2012 +0000
+
+    some data of the json
+
+commit d3aec106c2b398b53838a4c819d2b62739d8f86d
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sun Feb 26 02:00:11 2012 +0000
+
+    some data of the json
+
+commit 04847003e6339f29db9620c0070e65d0be69482f
+Merge: 3db8cac 03086b3
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sun Feb 26 01:48:07 2012 +0000
+
+    Merge branch 'master' of github.com:Julek/impek
+
+commit 3db8cac8203bbfef83f4dceb13af53939dd4cea4
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sun Feb 26 01:47:54 2012 +0000
+
+    parser with detail beta
+
+commit 03086b35f13086c570b62f8c3feca85d961bf1ce
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 01:35:37 2012 +0000
+
+    added time.java
+
+commit 0025da9041710e9bb25c7fdc9d4af499c9fa012d
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 01:34:44 2012 +0000
+
+    another bin rm
+
+commit a5bea6c73bb0266e359a8ac6be56f46bacac9e62
+Merge: 33cf569 296daa2
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 01:30:15 2012 +0000
+
+    Merge branch 'master' of ssh://github.com/Julek/impek
+
+commit 33cf569d854c947a73d82fdf7a66882de6d6a1d0
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sun Feb 26 01:29:56 2012 +0000
+
+    Ui in progress
+
+commit 296daa29d75bd110c16782f26324f4d978507c81
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 01:28:21 2012 +0000
+
+    not tested
+
+commit 317db47181949114d23b30ca9b77267a111dae22
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 00:47:57 2012 +0000
+
+    nothing important
+
+commit 7ef7c0f254246c85f799c4d39e12db4cdf789aad
+Merge: 7ea8d3c 15d1921
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 00:43:04 2012 +0000
+
+    settings file. not tested
+
+commit 7ea8d3c9bb16fa1ccd0b72109cca0d3d6cdcbf3a
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sun Feb 26 00:41:34 2012 +0000
+
+    settings file
+
+commit 15d192144f1daf720e1e7c462073ed53af07c349
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 23:00:41 2012 +0000
+
+    more geo
+
+commit dde3c7d08f174ff14f83f7a36d172f0980eb45c4
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 20:34:25 2012 +0000
+
+    ready for test
+
+commit 19c0306b45598ddf7b75c98be892b8e07256de1a
+Author: IrinaV <irena.elena@yahoo.com>
+Date:   Sat Feb 25 20:31:09 2012 +0000
+
+    removed bin
+
+commit c9761cf74802569d799f665826e22f95b55c9ab0
+Merge: 5452239 0bf9bcb
+Author: IrinaV <irena.elena@yahoo.com>
+Date:   Sat Feb 25 20:29:41 2012 +0000
+
+    Merge branch 'master' of ssh://github.com/Julek/impek
+
+commit 54522391780ee6723f0c20339ccd31ac06a660c9
+Merge: 34c732d 9f700a7
+Author: IrinaV <irena.elena@yahoo.com>
+Date:   Sat Feb 25 20:29:35 2012 +0000
+
+    Geoloc test
+
+commit 0bf9bcb990f5f8417b92574cc8845c4997091047
+Merge: 7428a45 95696db
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 20:28:40 2012 +0000
+
+    Merge branch 'master' of github.com:Julek/impek
+
+commit 7428a4546910ab1a596160539075cf142a89130e
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 20:28:30 2012 +0000
+
+    Starting reverse geo
+
+commit 95696db86449e44be73030196b12d92c1a4a9973
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sat Feb 25 20:20:57 2012 +0000
+
+    parser done
+
+commit 34c732de4163f26eb7537679f7ff138f00d935f5
+Author: IrinaV <irena.elena@yahoo.com>
+Date:   Sat Feb 25 20:11:56 2012 +0000
+
+    some ui.. yeah
+
+commit c968d62eb5910f0a03007caa9370c76cf12ae0d0
+Author: IrinaV <irena.elena@yahoo.com>
+Date:   Sat Feb 25 19:53:08 2012 +0000
+
+    UI clock
+
+commit 9f700a792e3a9602e300b1445dac160af6369192
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 19:32:58 2012 +0000
+
+    Basic Geolocation fully working
+
+commit 7f3e3f048aa6c604b4d03d17fd836776735ebbaa
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sat Feb 25 17:26:04 2012 +0000
+
+    ...
+
+commit 6c1507475dcc7d2fe82ec20d25646cd630186ca4
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sat Feb 25 17:20:35 2012 +0000
+
+    websrv
+
+commit 249afaab6ffde951bc16f133490c9cabfb335f49
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 17:19:20 2012 +0000
+
+    Removed more old merge tags
+
+commit b04629bfcfba2295321a2722999c6c3a5278713b
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 17:16:46 2012 +0000
+
+    Removed merge tags
+
+commit 52f1450c1dbcebb9ed162beb9c97b1004f340415
+Merge: 53786e8 55e4169
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 17:16:02 2012 +0000
+
+    merged
+
+commit 53786e8910f44284fdc305857fa9ade669256834
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 17:15:26 2012 +0000
+
+    Basic geolocator, may not work...
+
+commit 0fa31364f3c9321d8ff4df78734c48594e2d8eb7
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 17:15:04 2012 +0000
+
+    Basic geolocator, may not work...
+
+commit 55e41697c156e25b184594f1eee0c0582319d7d8
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sat Feb 25 17:09:53 2012 +0000
+
+    planner alpha
+
+commit bfb2539b448ea078aa4bbd906c298f25ba4dee14
+Author: IrinaV <irena.elena@yahoo.com>
+Date:   Sat Feb 25 17:08:23 2012 +0000
+
+    bin removed
+
+commit 6e8197990baaf8d1bea29ae9731ab0a3e7636a70
+Author: IrinaV <irena.elena@yahoo.com>
+Date:   Sat Feb 25 17:05:30 2012 +0000
+
+    Route Sample Skeleton, Request interface started
+
+commit f65ed784b66648d8abb2f769b6ea6bb58e1f4e7b
+Merge: 6c9cc4c 9ca4a92
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sat Feb 25 16:55:28 2012 +0000
+
+    Merge branch 'master' of github.com:Julek/impek
+
+commit 6c9cc4ca4bc7726aab15822f2c096e6676a0208c
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sat Feb 25 16:55:18 2012 +0000
+
+    tfl parser & server
+
+commit 9ca4a925ea544276edb45c9439dc2f969ac9c4e3
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sat Feb 25 15:48:51 2012 +0000
+
+    ...
+
+commit 0f5c6167f2ddf286e13b1ed45b2fb901a837e47e
+Merge: 0fbe2f9 add5dcb
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sat Feb 25 15:45:58 2012 +0000
+
+    Merge branch 'master' of github.com:Julek/impek
+
+commit 0fbe2f93fee5ae95a46cc9e0518ab17d14afa3f9
+Merge: c07f238 790de9b
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sat Feb 25 15:45:53 2012 +0000
+
+    ...
+
+commit add5dcbb7da5fd8934745d1a0caf01038ac4417e
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 15:44:30 2012 +0000
+
+    removed bin
+
+commit c07f23850e6e047f8283975a4ec6e22a7a38a18d
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sat Feb 25 15:41:38 2012 +0000
+
+    works on 2.1
+
+commit 790de9b8130a1e785937a83f199c1b2a5a181e66
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 15:28:50 2012 +0000
+
+    Stuff
+
+commit 3da57048f3139677e4f82342884364554c0dad00
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 15:26:51 2012 +0000
+
+    Fixed import
+
+commit 9e8a1654c44be3e3b3dd5222409a501eb6d24c8b
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 15:02:47 2012 +0000
+
+    Added missing files
+
+commit c81630d249c1a62257d8480b0bffa2eb10622915
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 14:38:32 2012 +0000
+
+    removed old test files
+
+commit b9fce433de5653a53e1b001b9c854b57d98a04c8
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 14:38:03 2012 +0000
+
+    Base
+
+commit 1d53cfae813bd8042d33602b1bec411d87cedc95
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sat Feb 25 13:31:46 2012 +0000
+
+    deleted trash files
+
+commit 953624e49199477a727cff5e862298c5494d81d1
+Merge: ea00859 0d12edb
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sat Feb 25 13:30:39 2012 +0000
+
+    Merge branch 'master' of github.com:Julek/impek
+
+commit 0d12edbb3e54e2aa0cb100b5296e5d6b8279341b
+Author: IrinaV <irena.elena@yahoo.com>
+Date:   Sat Feb 25 13:20:56 2012 +0000
+
+    test
+
+commit c737b235458d46dab164c3ab998ef81ae9437882
+Merge: 9b8eb31 588441b
+Author: IrinaV <irena.elena@yahoo.com>
+Date:   Sat Feb 25 13:20:37 2012 +0000
+
+    Merge branch 'master' of ssh://github.com/Julek/impek
+
+commit 588441b07c20e91cedc633ae8998888bcd726210
+Merge: b4879b8 70ca803
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 13:18:15 2012 +0000
+
+    Merge branch 'master' of github.com:Julek/impek
+
+commit b4879b824f8b86a0932f4da45b72dbe8dc47f7ae
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 13:18:02 2012 +0000
+
+    Stuff
+
+commit 70ca803ccbfec762e2c01d83afc213d9005a0ce4
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sat Feb 25 13:17:58 2012 +0000
+
+    i am down
+
+commit ea0085943b8fc4e3b3d048a1ed35c2eea9f8e876
+Author: Andrei Antonescu <andreibantonescu@gmail.com>
+Date:   Sat Feb 25 13:17:35 2012 +0000
+
+    ok
+
+commit c9c0becda2d3ef94ee20f33b039703418dcbd60f
+Author: Houssem El Fekih <he610@doc.ic.ac.uk>
+Date:   Sat Feb 25 13:08:39 2012 +0000
+
+     blaaa
+
+commit 9b8eb313c76783cff674593049abf9027566cc39
+Author: irina <irina@irina-VPCCW1S1E.(none)>
+Date:   Sat Feb 25 13:01:54 2012 +0000
+
+    test
+
+commit 14714d6a50af02d08f1cf78a38c0bd7e311f2338
+Author: Alex <alexandru.paunoiu10@imperial.ac.uk>
+Date:   Sat Feb 25 13:00:44 2012 +0000
+
+    blabla from Alex :D
+
+commit d5ecd4115124d33a6401073b4a9314ac41df729c
+Author: Julian Sutherland <julian.sutherland10@imperial.ac.uk>
+Date:   Sat Feb 25 12:37:34 2012 +0000
+
+    initial commit

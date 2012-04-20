@@ -15,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 public class Impekadd extends Activity{
 	static Context curr;
@@ -23,9 +25,20 @@ public class Impekadd extends Activity{
 	int group;
 	double lat = 0;
 	double longit = 0;
-	String alias = "Ice cream shop";
+	String alias = "No alias";
 	int duration = 1;
 	EventsDataSource databaseaccess;
+	
+	
+	
+	 int yearraw ;
+    	 int monthraw ;
+    	 int dateraw;
+    	 int dayofweek;
+	String [] Days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+	String [] Months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"};
+	 String presentable = "Intent error";
+	 final String [] items={"Global","Work","Play","kids football"};    	
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,15 +46,20 @@ public class Impekadd extends Activity{
 		curr = this;
 		
 			    	Bundle extra = getIntent().getExtras();
+			    	
 			    	 time =  extra.getInt("Time");
-			    	 date = extra.getString("Date");
+			    	 yearraw =  extra.getInt("Year");
+			    	 monthraw =  extra.getInt("Month");
+			    	 dateraw =  extra.getInt("Date");
+			    	 dayofweek = extra.getInt("Dayweek");
+			    	 date = toSQL(yearraw,monthraw,dateraw);
 			    	 group = extra.getInt("Group");
 			    	databaseaccess  =new EventsDataSource(curr);
 			    	
-
+			    	presentable = topresentable(dateraw,monthraw,yearraw,dayofweek);
 			    	
 			    	TextView t = (TextView) findViewById(R.id.datemaleable);
-			    	t.setText("Schedule Event on " + date + "\n at " + time + "\n in Calendar " + group);
+			    	t.setText("Schedule Event on \n" + presentable + "\n at " + time + "\n in Calendar " + items[group]);
 				//setAlarm(d.getTime(),52,"This is what's up");
 				//GeoLocation.setup_GeoLocation();
 				//calendarAddselector();
@@ -50,6 +68,12 @@ public class Impekadd extends Activity{
 	}
 	
 	
+private String topresentable(int dateraw, int monthraw,
+		int yearraw, int dayofweek) {
+	    return Days[dayofweek-1] + ", "  + dateraw +" " + Months[monthraw] + " " +yearraw;
+	}
+
+
 private void registerControllers() {
     Button validate = (Button) findViewById(R.id.button1);
     final EditText t = (EditText) findViewById(R.id.editText1);
@@ -59,11 +83,41 @@ private void registerControllers() {
         public void onClick(View v) {
     	// TODO Auto-generated method stub
             createEvent( t.getText().toString(), time, date,duration, longit ,  lat ,  alias, group);
-     
+            onBackPressed();
+            Context context = getApplicationContext();
+            CharSequence text = "The Event is now created\n You won't be late for this event!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
     });
-	    // TODO Auto-generated method stub
+
+
+    Button placeOnmap = (Button) findViewById(R.id.button2);
+    placeOnmap.setOnClickListener(new View.OnClickListener() {
+	public void onClick(View v) {
+    	// TODO Auto-generated method stub
+    	Intent t = new Intent(curr,MapsView.class);
+        startActivity(t);
+	}
+    });
 }
+
+
+
+
+private String toSQL(int yearraw, int monthraw , int dateraw) {
+	// returns an SQL representation of the current date
+	return  yearraw+"-"+monthraw+"-"+dateraw;
+    }
+
+
+
+
+
+
+
 
 
 private void createEvent(String event, int time,String date,int duration,double longitude , double lat , String alias,int groupId) {
@@ -85,16 +139,5 @@ private void createEvent(String event, int time,String date,int duration,double 
 		 am.set(AlarmManager.RTC_WAKEUP, d.getTime(), sender);
 		}
 
-
-
-public void calendarAddselector(){ 
-		final String [] items=new String[]{"Item1","Item2","Item3","Item4"};
-		ArrayAdapter<String> ad=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,items);
-		ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		Spinner spin=(Spinner)findViewById(R.id.spinner1);
-		spin.setAdapter(ad);
-		//spin.setOnItemClickListener(new OnItemSelectedListener()
-
-}
 
 }

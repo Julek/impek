@@ -2,6 +2,7 @@ package Impek.Gen;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import android.util.Log;
 import android.content.ContentValues;
@@ -68,13 +69,67 @@ public class EventsDataSource {
 		System.out.println("Comment deleted with id: " + id);
 		database.delete(MySQLiteHelper.TABLE_EVENTS, MySQLiteHelper.COLUMN_ID
 				+ " = " + id, null);
+	
 	}
 
+	public List<Event> getEventsByDay(String d){
+	    List<Event> events = new ArrayList<Event>();
+	  
+		Cursor cursor =
+			database.query(MySQLiteHelper.TABLE_EVENTS,
+				allColumns,  MySQLiteHelper.COLUMN_DATE+" = " +Date.valueOf(d)  //  ++
+			, null, null, null,MySQLiteHelper.COLUMN_TIME );
+			
+				
+			//database.rawQuery("select * from "+MySQLiteHelper.TABLE_EVENTS+
+			//" where " + MySQLiteHelper.COLUMN_DATE +" = " + d +" orderBy "+ MySQLiteHelper.COLUMN_TIME, null); 
+		
+		// constructs the list ..
+		// using 
+		
+		cursor.moveToFirst();
+		int thecount = 0;
+		while(thecount < 24){
+		 //   while (!cursor.isAfterLast()) {
+		    if(cursor.isAfterLast()){
+			
+			    Event dummy = new Event();
+			    dummy.setTime(thecount);
+			    dummy.setDummy();
+			    events.add(dummy);
+		    }
+		    else {
+			Event event = new Event();
+			event = cursorToEvent(cursor);
+			Log.e("see what's happening",event.getDate());
+			if( event.getTime() == thecount){
+			    events.add(event);
+		    	    cursor.moveToNext();
+		    	    
+			}
+			else
+			{
+			  
+			    Event dummy = new Event();
+			    dummy.setTime(thecount);
+			    dummy.setDummy();
+			    events.add(dummy);
+			}
+		    }
+			thecount++;
+		}
+		    
+		// Make sure to close the cursor
+		cursor.close();
+		return events;
+	}
+	
 	public List<Event> getAllEvents() {
 		List<Event> events = new ArrayList<Event>();
 		Cursor cursor = database.query(MySQLiteHelper.TABLE_EVENTS,
 				allColumns, null, null, null, null, MySQLiteHelper.COLUMN_DATE);
 
+		
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			Event event = cursorToEvent(cursor);

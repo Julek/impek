@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
@@ -43,31 +44,21 @@ public class LocalCal extends Activity implements OnGestureListener {
 		
 		boolean [] eventExists = new boolean [24];
 		private GestureDetector gestureScanner; 
-		ArrayAdapter<String> listAdapter;
+		ArrayAdapter<Event> listAdapter;
 		
 		int groupId;
 		
-		  String[] hours = new String[] {
-		    "00:00", "01:00", "02:00", "03:00", "04:00",
-		    "05:00", "06:00", "07:00", "08:00", "09:00",
-		    "10:00", "11:00", "12:00", "13:00", "14:00",
-		    "15:00", "16:00", "17:00", "18:00", "19:00",
-		    "20:00", "21:00", "22:00", "23:00"};
+		EventsDataSource databaseaccess;
 		
 		
-		public void addEvent(int hour,String Desc, String location){
-		   hours[hour]= hours[hour]+"   "+Desc+" @"+location;
-		   eventExists[hour] = true;
-		   if(listAdapter!=null){
-		    listAdapter.notifyDataSetChanged();
-		}
-		}
+		
 		
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.calendargeneric);
 			curr = this;
-			
+		
+			databaseaccess = new EventsDataSource(this);
 			registerControllers();
 			setCurrentDay(Calendar.getInstance());
 			generateCurrentView();
@@ -147,36 +138,42 @@ public class LocalCal extends Activity implements OnGestureListener {
 		
 		private void generateCurrentView(){
 			//some db sttaff
+		    	databaseaccess.open();
 		    	ListView t = (ListView)findViewById(R.id.all_stuff);
-		    	listAdapter= new ArrayAdapter<String>(this,R.layout.calendarslot,hours); 
-		    	t.setAdapter(listAdapter);
+		    	String today = currentView.get(Calendar.YEAR)+"-"+(currentView.get(Calendar.MONTH))+"-"+
+		    	currentView.get(Calendar.DATE);
 		    	
+		    	Log.e("today",today);
+		    	listAdapter= new ArrayAdapter<Event>(this,R.layout.calendarslot,databaseaccess.getEventsByDay(today)); 
+		    	t.setAdapter(listAdapter);
+		    	databaseaccess.close();
 		    	t.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 		    	    public void onItemClick(android.widget.AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
 		    		if(eventExists[arg2]){
 		    		Intent c = new Intent(curr,Impekedit.class);
 		    		
 		        	c.putExtra("Time", arg2);
-		        	c.putExtra("Date", toSQL());
+		        	Log.e("dump", currentView.get(Calendar.YEAR)+"");
+		        	c.putExtra("Year",currentView.get(Calendar.YEAR));
+		        	c.putExtra("Month", currentView.get(Calendar.MONTH));
+		        	c.putExtra("Date",currentView.get(Calendar.DATE));
+		        	c.putExtra("Dayweek",currentView.get(Calendar.DAY_OF_WEEK));
 		        	c.putExtra("Group",groupId);
 		        	startActivity(c);
 		    		}
 		    		else{
 		    		Intent c = new Intent(curr,Impekadd.class);
-		    		c.putExtra("Time", arg2);
-		        	c.putExtra("Date", toSQL());
+		    	    	c.putExtra("Time", arg2);
+		        	c.putExtra("Year",currentView.get(Calendar.YEAR));
+		        	c.putExtra("Month", currentView.get(Calendar.MONTH));
+		        	c.putExtra("Date",currentView.get(Calendar.DATE));
+		        	c.putExtra("Dayweek",currentView.get(Calendar.DAY_OF_WEEK));
 		        	c.putExtra("Group",groupId);
-		    		startActivity(c);
+		        	startActivity(c);
 		    		}
 		    	    }
 
-			    private String toSQL() {
-				// returns an SQL representation of the current date
-				return currentView.get(Calendar.YEAR)+"-"+
-					currentView.get(Calendar.MONTH) +"-"+
-					currentView.get(Calendar.DATE);
-					
-			    }
+			  
 		    	});
 			t.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 		    	    public boolean onItemLongClick(android.widget.AdapterView<?> arg0, View arg1, final int arg2, long arg3) {
@@ -230,12 +227,12 @@ public class LocalCal extends Activity implements OnGestureListener {
 			TextView cal = (TextView)(findViewById(R.id.calendarselection));
 			genText = "Week "+ getWeek(t);
 			cal.setText(genText);
-			clearView();
+			
 			
 			// this is where the SQL magic should happen .. but no we'll just settle with
 			// this for now
-			mockData();
-			
+			//mockData();
+			generateCurrentView();
 		}
 
 
@@ -249,54 +246,8 @@ public class LocalCal extends Activity implements OnGestureListener {
 			
 		}
 
-
-		private void mockData() {
-		    // TODO Auto-generated method stub
-		  //  addEvent(14,"PPT meeting","Imperial College");
-		   // addEvent(22,"birthday partaayy","Boujis");
-		    	// mock data for visual testing:
-		    int thecase = currentView.get(Calendar.DAY_OF_WEEK)%3;
-		    	switch(thecase){
-		    		case 0:
-		    		    {
-		    			addEvent(4,"eat sleeping pill","home");
-		    			addEvent(5,"Go running","hyde park");
-		    			addEvent(22,"partaaaay","XOYO");
-		    			addEvent(14,"Show up for work","work");
-		    			addEvent(7,"performance","speaker's corner");
-		    			break;
-		    		    }
-		    		case 1:
-		    		    {
-		    			addEvent(10,"Hackathon","Imperial College");
-		    			addEvent(15,"Meeting with Joanna","East London");
-		    			addEvent(22,"surprise valeria","valeria's place");
-		    			break;
-		    		    }
-		    		case 2:
-		    		{
-		    		    addEvent(18,"bowling","SW15 8NE");
-		    		    addEvent(23,"berniee","N/A");
-		    		break;
-		    		    
-		    		}
-		    		    
-		    		
-		    	}
 		    	
-		}
-
-		private void clearView() {
-		     String []copy = new String[] {
-			    "00:00", "01:00", "02:00", "03:00", "04:00",
-			    "05:00", "06:00", "07:00", "08:00", "09:00",
-			    "10:00", "11:00", "12:00", "13:00", "14:00",
-			    "15:00", "16:00", "17:00", "18:00", "19:00",
-			    "20:00", "21:00", "22:00", "23:00"};
-		     
-		     System.arraycopy(copy, 0,hours, 0, hours.length);
-		    
-		}
+		
 
 		private void nextDay() {
 			Calendar t = currentView;

@@ -2,6 +2,8 @@ package Impek.Gen;
 
 
 
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,13 +18,11 @@ public class Impekedit extends Activity{
 		//setContentView(R.layout.edittimeslot);
 		curr = this;
 		Intent t = this.getIntent();
-		
+		  
 		//Bundle extra = t.getBundleExtra("Time");
 		///Log.e ("Time!",""+extra.getInt("Time"));
 		
 	}
 	
-	
-
 
 }

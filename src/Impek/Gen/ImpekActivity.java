@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ImpekActivity extends Activity {
 	/** Called when the activity is first created. */
@@ -57,7 +58,7 @@ public class ImpekActivity extends Activity {
 			);
 		
 		         final ProgressBar mProgress = (ProgressBar) findViewById(R.id.ProgressBar);
-		         // Start lengthy operation in a background thread
+		         // Starts long polling location in a background thread
 		         new Thread(new Runnable() {
 		             public void run() {
 		                 while (mProgressStatus < 100) {
@@ -85,22 +86,21 @@ public class ImpekActivity extends Activity {
 
 		         registerControllers();
 		         //DatabaseTes;t();
-//		         if( listAdapter!=null && listAdapter.isEmpty() ){
-//		             Button j = new Button(this);
-//		             j.setText("No events upcoming .. \nclick to schedule an event");
-//		             j.setOnClickListener(new View.OnClickListener() {
-//			        
-//			        public void onClick(View v) {
-//			    	// TODO Auto-generated method stub
-//			    	Intent t = new Intent(curr,Impekcals.class);
-//			    	startActivity(t);
-//			        }
-//			    });
-//		             View t = (View)j;
-//		             upcomingevents.addFooterView(t);
-//		         }
-//		         upcomingevents.setAdapter(listAdapter);
-//		         Log.e("this","happened");
+		         if( listAdapter!=null && listAdapter.isEmpty() ){
+		             Button j = new Button(this);
+		             j.setText("No events upcoming .. \nclick to schedule an event");
+		             j.setOnClickListener(new View.OnClickListener() {
+			        
+			        public void onClick(View v) {
+			    	// TODO Auto-generated method stub
+			    	Intent t = new Intent(curr,Impekcals.class);
+			    	startActivity(t);
+			        }
+			    });
+		             View t = (View)j;
+		          //   upcomingevents.addFooterView(t);
+		         }
+		         upcomingevents.invalidate();
 	}
 		 
 	
@@ -109,19 +109,15 @@ public class ImpekActivity extends Activity {
      	
 	upcomingevents = (ListView)findViewById(R.id.content);
 
-	new Thread(new Runnable() {
-            public void run() {
-        	databaseaccess= new EventsDataSource(curr);
+	databaseaccess= new EventsDataSource(curr);
              	databaseaccess.open();
 
         	listAdapter= new ArrayAdapter<Event>(curr,R.layout.calendarslot,databaseaccess.getAllEvents()); 
         	databaseaccess.close();
         	listAdapter.notifyDataSetChanged();
-        	
-            }
+        	upcomingevents.setAdapter(listAdapter);	
                 
                 
-            }).start();
             
 
      	upcomingevents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -148,6 +144,12 @@ public class ImpekActivity extends Activity {
     		               databaseaccess.open();
     		        	databaseaccess.deleteEvent(event);
 				listAdapter.remove(event);
+				  Context context = getApplicationContext();
+			            CharSequence text = "The event was canceled successfully";
+			            int duration = Toast.LENGTH_SHORT;
+
+			            Toast toast = Toast.makeText(context, text, duration);
+			            toast.show();
 			      databaseaccess.close();
     		           
     		           }
@@ -191,8 +193,8 @@ public void DatabaseTest(){
  		databaseaccess.createEvent(test[testcase],testcase,"2012-11-01"
 		    ,3,testcase+30.5,testcase +55,"Sloane Square", testcase);
  	    testcase++;
- 	    
-    	listAdapter= new ArrayAdapter<Event>(curr,R.layout.calendarslot,databaseaccess.getAllEvents()); 
+ 	 
+ 	listAdapter= new ArrayAdapter<Event>(curr,R.layout.calendarslot,databaseaccess.getAllEvents()); 
     	databaseaccess.close();
 
     	upcomingevents.setAdapter(listAdapter);        
@@ -200,25 +202,6 @@ public void DatabaseTest(){
 	
 	
 		
-		
-		//fictitiousTask(); // i am trying to get to south ken tomorow at 9
-		//p.addNewEntry("", latitude, longitude, arrival, postcode)
-	
-		
-	//Commenting this out for my testing (Julek)
-	
-	private void fictitiousTask() {
-		// TODO Auto-generated method stub
-		// fork test for google maps API;
-		Calendar d = Calendar.getInstance();
-		d.add(Calendar.HOUR,1);
-		
-		//p.addNewEntry("UNI .. ", 51.49879, -0.17919, Date.parse(d.toString()),"SW7 1AZ");
-		
-		
-		
-	}
-
 	public int update() {
 		
 		//TextView r = ((TextView) findViewById(R.id.textView1));
@@ -237,7 +220,8 @@ public void DatabaseTest(){
 					//String postcode = GeoConversion.reverseGeocode(GeoLocation.getLocation());
 					s.setText("You were Located at: "+"djerba midoun");//postcode);
 					mProgressStatus=100;
-					mHandler.notify();
+					
+					//mHandler.notify();
 					//p.notificationOfPosition(latitude, longitude, postcode);
 				//}
 //				catch(NoGeoConversion e)
